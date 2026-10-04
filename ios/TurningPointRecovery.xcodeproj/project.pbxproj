@@ -1,0 +1,302 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6671E474BCD9AB1B4C74F051 = {isa = PBXBuildFile; fileRef = E379E300ADD7FF19AC14B431; };
+		C914B5C7206DABCA19421741 = {isa = PBXBuildFile; fileRef = 26435EDBE3200A03C10488AA; };
+		CB648CC6B37562AEB56F1BDB = {isa = PBXBuildFile; fileRef = CB163F2063B0858B8E09CF14; };
+		17CD987FE0A2C979CC404B3B = {isa = PBXBuildFile; fileRef = 024D530D0BFCCE2D1C32792B; };
+		1A6C5BFFF6675C3E4973A637 = {isa = PBXBuildFile; fileRef = 76C328B903E73C078AC15C4C; };
+		ED78854CC77CAD06EC908945 = {isa = PBXBuildFile; fileRef = 0BE15B9B97B0E2F7711F594D; };
+		59A3B7C7D22B4DDBCF26D88C = {isa = PBXBuildFile; fileRef = F93593C78F8C9BE420227061; };
+		EF380D13217ED338FDE0EF36 = {isa = PBXBuildFile; fileRef = AD3069518BD6FB2696EC23FA; };
+		F0BAF6902A663A709EB65E4C = {isa = PBXBuildFile; fileRef = 1DDA132BC0B389B0A70DA321; };
+		504F11A883A166C1C88FDB2A = {isa = PBXBuildFile; fileRef = 0D221B4673F79C0ABD9C021D; };
+		F13700B701EB5CD7C0605B6F = {isa = PBXBuildFile; fileRef = EAF6B83C2ABBADFF5E0BAB15; };
+		03FEA769AD4F14F5CF568FEF = {isa = PBXBuildFile; fileRef = BDDC62FCB5B12C582D9D4714; };
+		EB3A63170D0D3EDCF046643A = {isa = PBXBuildFile; fileRef = EB234A99D04D005071B991D2; };
+		58F5105B3465DB494841CEEA = {isa = PBXBuildFile; fileRef = 8625ED0374D758D13629F304; };
+		F231AB589B70ACA4F1C5D809 = {isa = PBXBuildFile; fileRef = A790BB479B2477E3A634A1EB; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		E379E300ADD7FF19AC14B431 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurningPointRecoveryApp.swift; sourceTree = "<group>"; };
+		26435EDBE3200A03C10488AA = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		CB163F2063B0858B8E09CF14 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		024D530D0BFCCE2D1C32792B = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
+		76C328B903E73C078AC15C4C = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Content.swift; sourceTree = "<group>"; };
+		0BE15B9B97B0E2F7711F594D = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
+		F93593C78F8C9BE420227061 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
+		AD3069518BD6FB2696EC23FA = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrisisSheet.swift; sourceTree = "<group>"; };
+		1DDA132BC0B389B0A70DA321 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayView.swift; sourceTree = "<group>"; };
+		0D221B4673F79C0ABD9C021D = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInView.swift; sourceTree = "<group>"; };
+		EAF6B83C2ABBADFF5E0BAB15 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterView.swift; sourceTree = "<group>"; };
+		BDDC62FCB5B12C582D9D4714 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingsView.swift; sourceTree = "<group>"; };
+		EB234A99D04D005071B991D2 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcesView.swift; sourceTree = "<group>"; };
+		8625ED0374D758D13629F304 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsView.swift; sourceTree = "<group>"; };
+		B15A13ACECE86FF5B996CE6C = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A790BB479B2477E3A634A1EB = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		84337AD8D27FCD69AF2C4FC2 = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TurningPointRecovery.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		424153ED3CD079DB4DB459AF = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		518DA81DB9B99529C0C0AEBE = {
+			isa = PBXGroup;
+			children = (
+				82CF2A43A7100F086D7FCFDD,
+				547D009064F7C3F13BEF3460,
+			);
+			sourceTree = "<group>";
+		};
+		82CF2A43A7100F086D7FCFDD = {
+			isa = PBXGroup;
+			children = (
+				E379E300ADD7FF19AC14B431,
+				26435EDBE3200A03C10488AA,
+				CB163F2063B0858B8E09CF14,
+				B15A13ACECE86FF5B996CE6C,
+				A790BB479B2477E3A634A1EB,
+				209FAC3A625D83C69ADEB15A,
+				29AC9F3F890EAF73DB9E7C81,
+			);
+			path = TurningPointRecovery;
+			sourceTree = "<group>";
+		};
+		209FAC3A625D83C69ADEB15A = {
+			isa = PBXGroup;
+			children = (
+				024D530D0BFCCE2D1C32792B,
+				76C328B903E73C078AC15C4C,
+				0BE15B9B97B0E2F7711F594D,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		29AC9F3F890EAF73DB9E7C81 = {
+			isa = PBXGroup;
+			children = (
+				F93593C78F8C9BE420227061,
+				AD3069518BD6FB2696EC23FA,
+				1DDA132BC0B389B0A70DA321,
+				0D221B4673F79C0ABD9C021D,
+				EAF6B83C2ABBADFF5E0BAB15,
+				BDDC62FCB5B12C582D9D4714,
+				EB234A99D04D005071B991D2,
+				8625ED0374D758D13629F304,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		547D009064F7C3F13BEF3460 = {
+			isa = PBXGroup;
+			children = (
+				84337AD8D27FCD69AF2C4FC2,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E3435DDA2687639586BF0B70 = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F2F62AAE534BA46EC59716F3;
+			buildPhases = (
+				7A70D71C385290AF96BF1031,
+				424153ED3CD079DB4DB459AF,
+				285BB1C1430063331E9F5DD0,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TurningPointRecovery;
+			productName = TurningPointRecovery;
+			productReference = 84337AD8D27FCD69AF2C4FC2;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		46F86FAA6BBF9AC94A7E4595 = {
+			isa = PBXProject;
+			buildConfigurationList = 7EF2517A8FE63F4681EC5EEA;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 518DA81DB9B99529C0C0AEBE;
+			productRefGroup = 547D009064F7C3F13BEF3460;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E3435DDA2687639586BF0B70,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		285BB1C1430063331E9F5DD0 = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F231AB589B70ACA4F1C5D809,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7A70D71C385290AF96BF1031 = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			6671E474BCD9AB1B4C74F051,
+			C914B5C7206DABCA19421741,
+			CB648CC6B37562AEB56F1BDB,
+			17CD987FE0A2C979CC404B3B,
+			1A6C5BFFF6675C3E4973A637,
+			ED78854CC77CAD06EC908945,
+			59A3B7C7D22B4DDBCF26D88C,
+			EF380D13217ED338FDE0EF36,
+			F0BAF6902A663A709EB65E4C,
+			504F11A883A166C1C88FDB2A,
+			F13700B701EB5CD7C0605B6F,
+			03FEA769AD4F14F5CF568FEF,
+			EB3A63170D0D3EDCF046643A,
+			58F5105B3465DB494841CEEA,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		C19BB360D63F1BA9F02BAB59 = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		88A29AB70C762FCDF6D9A1D3 = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		331C5106741EE8E14B752D88 = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = TurningPointRecovery/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.turningpoint.recoveryapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1";
+			};
+			name = Debug;
+		};
+		256639833029BCA847F093AE = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1.0;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = TurningPointRecovery/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.turningpoint.recoveryapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7EF2517A8FE63F4681EC5EEA = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C19BB360D63F1BA9F02BAB59,
+				88A29AB70C762FCDF6D9A1D3,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F2F62AAE534BA46EC59716F3 = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				331C5106741EE8E14B752D88,
+				256639833029BCA847F093AE,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 46F86FAA6BBF9AC94A7E4595;
+}
