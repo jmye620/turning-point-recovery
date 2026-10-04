@@ -1,0 +1,32 @@
+# Android
+*.apk
+*.aab
+local.properties
+.gradle/
+**/build/
+captures/
+.externalNativeBuild/
+.cxx/
+
+# Signing keys — never commit release keys. The shared debug keystore is
+# intentionally kept out of version control; keep your copy safe, since
+# changing it forces users to uninstall (wiping local app data).
+*.keystore
+*.jks
+
+# iOS / Xcode
+*.xcuserdata/
+DerivedData/
+*.xcarchive
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.idea/
+.vscode/
+*.swp

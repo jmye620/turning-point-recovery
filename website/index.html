@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0b6e64">
+<meta name="description" content="Turning Point Recovery — daily recovery support: counter, meetings, check-ins, coping tools. Your data stays on your device.">
+<title>Turning Point Recovery</title>
+<style>
+:root{
+  --teal:#0b6e64; --teal-dark:#084f48; --teal-soft:#e3f2ef;
+  --bg:#faf7f1; --card:#ffffff; --ink:#2b2620; --muted:#6b6259;
+  --line:#e7e0d4; --amber:#b45309; --amber-soft:#fdf3e3;
+  --red:#b3261e; --radius:14px;
+  --shadow:0 1px 3px rgba(43,38,32,.08),0 4px 14px rgba(43,38,32,.06);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  line-height:1.55; font-size:16px;
+}
+.wrap{max-width:660px;margin:0 auto;padding:0 16px 96px}
+/* ---------- header ---------- */
+header.top{
+  background:var(--teal); color:#fff;
+  padding:14px 16px calc(14px + env(safe-area-inset-top)) ;
+  padding-top:calc(14px + env(safe-area-inset-top));
+  position:sticky; top:0; z-index:40;
+}
+.top-inner{max-width:660px;margin:0 auto;display:flex;align-items:center;gap:10px}
+.brand{flex:1;min-width:0}
+.brand h1{font-size:19px;margin:0;line-height:1.25}
+.brand p{margin:2px 0 0;font-size:12.5px;opacity:.92}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  min-height:44px;padding:10px 18px;border-radius:999px;border:2px solid transparent;
+  font-size:15px;font-weight:700;cursor:pointer;text-decoration:none;line-height:1.2;
+}
+.btn-primary{background:var(--teal);color:#fff}
+.btn-primary:hover{background:var(--teal-dark)}
+.btn-outline{background:#fff;color:var(--teal);border-color:var(--teal)}
+.btn-outline:hover{background:var(--teal-soft)}
+.btn-danger{background:#fff;color:var(--red);border-color:var(--red)}
+.btn-ghost{background:transparent;color:var(--teal);padding:10px 12px}
+.btn-sm{min-height:40px;padding:8px 14px;font-size:14px}
+.btn-block{width:100%}
+.btn[disabled]{opacity:.55;cursor:not-allowed}
+a.btn{color:inherit}
+.btn-primary,a.btn-primary{color:#fff}
+/* language + help buttons in header */
+.hdr-actions{display:flex;gap:8px;align-items:center}
+.lang-toggle{
+  background:rgba(255,255,255,.16);color:#fff;border:1px solid rgba(255,255,255,.55);
+  border-radius:999px;min-height:44px;padding:8px 14px;font-weight:700;font-size:14px;cursor:pointer;
+}
+.lang-toggle:hover{background:rgba(255,255,255,.28)}
+.help-btn{
+  background:#fff;color:var(--red);border-radius:999px;min-height:44px;
+  padding:8px 16px;font-weight:800;font-size:14px;cursor:pointer;border:none;
+  white-space:nowrap;
+}
+/* ---------- tab bar ---------- */
+nav.tabs{
+  position:sticky;top:0;z-index:39;background:var(--bg);
+  border-bottom:1px solid var(--line);
+}
+.tabs-inner{max-width:660px;margin:0 auto;display:flex;overflow-x:auto;scrollbar-width:none}
+.tabs-inner::-webkit-scrollbar{display:none}
+.tab{
+  flex:1 0 auto;background:none;border:none;cursor:pointer;
+  padding:12px 14px;min-height:52px;font-size:14.5px;font-weight:700;color:var(--muted);
+  border-bottom:3px solid transparent;white-space:nowrap;
+}
+.tab[aria-selected="true"]{color:var(--teal);border-bottom-color:var(--teal)}
+.tab:hover{color:var(--teal)}
+/* ---------- cards & type ---------- */
+.card{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  padding:18px;margin:14px 0;box-shadow:var(--shadow);
+}
+.card h2{margin:0 0 8px;font-size:20px;line-height:1.3}
+.card h3{margin:14px 0 6px;font-size:16.5px}
+.eyebrow{
+  font-size:12.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--teal);margin:0 0 6px;
+}
+.muted{color:var(--muted)}
+.small{font-size:13.5px}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.space-between{justify-content:space-between}
+.mt{margin-top:14px}.mb{margin-bottom:14px}
+/* affirmation */
+.affirmation{
+  background:linear-gradient(135deg,var(--teal) 0%,#129183 100%);color:#fff;
+  border-radius:var(--radius);padding:22px 18px;margin:14px 0;box-shadow:var(--shadow);
+}
+.affirmation blockquote{margin:8px 0 0;font-size:21px;font-weight:700;line-height:1.4}
+/* crisis strip */
+.crisis-strip{
+  background:#fff;border:2px solid var(--red);border-radius:var(--radius);
+  padding:14px 16px;margin:14px 0;
+}
+.crisis-strip strong{color:var(--red)}
+.tel-link{
+  display:inline-flex;align-items:center;min-height:44px;padding:8px 14px;margin:4px 6px 4px 0;
+  background:var(--red);color:#fff!important;font-weight:800;border-radius:999px;text-decoration:none;font-size:16px;
+}
+.tel-link.teal{background:var(--teal)}
+.tel-link.plain{background:var(--teal-soft);color:var(--teal-dark)!important}
+/* milestone chips */
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0}
+.chip{
+  border:2px solid var(--line);background:#fff;border-radius:999px;
+  min-height:44px;padding:8px 14px;font-size:14px;font-weight:700;color:var(--muted);
+  display:inline-flex;align-items:center;gap:8px;cursor:default;
+}
+.chip.earned{border-color:var(--teal);background:var(--teal-soft);color:var(--teal-dark);cursor:pointer}
+.chip.earned:hover{background:#d3e9e4}
+.chip.next{border-style:dashed;border-color:var(--amber);color:var(--amber);background:var(--amber-soft)}
+.chip .dot{width:10px;height:10px;border-radius:50%;background:currentColor;flex:none}
+/* meetings */
+.meet-day{margin:18px 0 6px;font-size:18px}
+.meet-day .today-badge{
+  background:var(--teal);color:#fff;font-size:12px;font-weight:800;border-radius:999px;
+  padding:3px 10px;margin-left:8px;vertical-align:middle;
+}
+.meet{
+  display:flex;gap:12px;align-items:flex-start;background:#fff;border:1px solid var(--line);
+  border-radius:12px;padding:12px 14px;margin:8px 0;
+}
+.meet time{font-weight:800;color:var(--teal-dark);white-space:nowrap;min-width:76px;font-size:14.5px}
+.meet .m-name{font-weight:700}
+.meet .m-desc{color:var(--muted);font-size:13.5px}
+/* forms */
+label.f{display:block;font-weight:700;margin:12px 0 6px}
+input[type="text"],input[type="date"],input[type="tel"],textarea,select{
+  width:100%;border:2px solid var(--line);border-radius:10px;padding:12px;
+  font-size:16px;font-family:inherit;background:#fff;color:var(--ink);min-height:48px;
+}
+textarea{min-height:110px;resize:vertical}
+input:focus,textarea:focus,select:focus,button:focus-visible,a:focus-visible{
+  outline:3px solid var(--teal);outline-offset:2px;
+}
+input[type="range"]{width:100%;min-height:44px;accent-color:var(--teal)}
+.seg{display:flex;gap:10px;flex-wrap:wrap}
+.seg button{
+  flex:1;min-height:52px;border-radius:12px;border:2px solid var(--line);background:#fff;
+  font-size:15px;font-weight:700;cursor:pointer;color:var(--muted);padding:10px;
+}
+.seg button[aria-pressed="true"]{border-color:var(--teal);background:var(--teal-soft);color:var(--teal-dark)}
+.prompt-chips{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+.prompt-chips button{
+  border:1.5px solid var(--line);background:#fff;border-radius:999px;padding:8px 12px;
+  font-size:13.5px;cursor:pointer;min-height:40px;color:var(--teal-dark);font-weight:600;
+}
+.prompt-chips button:hover{border-color:var(--teal)}
+.entry{border-top:1px solid var(--line);padding:12px 0}
+.entry:first-of-type{border-top:none}
+.entry .e-date{font-size:13px;color:var(--muted);font-weight:700}
+/* breathing */
+.breath-stage{display:flex;flex-direction:column;align-items:center;gap:14px;padding:10px 0}
+.breath-box{
+  width:170px;height:170px;border-radius:24px;background:var(--teal-soft);
+  border:3px solid var(--teal);display:flex;align-items:center;justify-content:center;
+  text-align:center;font-weight:800;color:var(--teal-dark);font-size:18px;padding:16px;
+  transition:transform 4s ease-in-out,background-color 1s;
+}
+.breath-box.in{transform:scale(1.28);background:#cde8e2}
+.breath-box.hold{transform:scale(1.28)}
+.breath-box.out{transform:scale(1)}
+/* dialog */
+dialog{
+  border:none;border-radius:18px;padding:0;max-width:min(92vw,480px);width:100%;
+  box-shadow:0 12px 48px rgba(0,0,0,.25);
+}
+dialog::backdrop{background:rgba(43,38,32,.55)}
+.dlg-body{padding:22px}
+.dlg-body h2{margin-top:0}
+.dlg-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.share-card-preview{width:100%;border-radius:12px;border:1px solid var(--line);display:block}
+/* footer */
+footer.site{
+  border-top:1px solid var(--line);margin-top:26px;padding:20px 0 40px;color:var(--muted);
+}
+footer.site .wrap{padding-bottom:0}
+/* toast */
+#toast{
+  position:fixed;left:50%;transform:translateX(-50%) translateY(20px);bottom:24px;
+  background:var(--ink);color:#fff;padding:12px 20px;border-radius:999px;font-weight:600;
+  opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;z-index:100;max-width:90vw;text-align:center;
+}
+#toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+/* misc */
+.kv{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px dashed var(--line);font-size:14.5px}
+.kv:last-child{border-bottom:none}
+.badge{display:inline-block;background:var(--teal-soft);color:var(--teal-dark);font-weight:800;font-size:12.5px;border-radius:999px;padding:4px 12px}
+.divider{height:1px;background:var(--line);margin:16px 0}
+ul.clean{padding-left:20px;margin:8px 0}
+ul.clean li{margin:6px 0}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{transition:none!important;animation:none!important}
+  .breath-box{transition:none}
+}
+@media (min-width:520px){
+  .brand h1{font-size:21px}
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="top-inner">
+    <div class="brand">
+      <h1 id="brand-title">Turning Point Recovery</h1>
+      <p id="brand-sub">A Recovery Community Center</p>
+    </div>
+    <div class="hdr-actions">
+      <button class="lang-toggle" id="lang-btn" aria-label="Switch language / Cambiar idioma">ES</button>
+      <button class="help-btn" id="help-btn">🆘 <span id="help-btn-label">Get help</span></button>
+    </div>
+  </div>
+</header>
+<nav class="tabs" aria-label="Sections" id="tabs-nav">
+  <div class="tabs-inner" role="tablist" id="tabs"></div>
+</nav>
+<main class="wrap" id="main">
+  <div id="view"></div>
+  <footer class="site" id="site-footer"></footer>
+</main>
+
+<dialog id="crisis-dialog" aria-labelledby="crisis-title">
+  <div class="dlg-body" id="crisis-body"></div>
+</dialog>
+<dialog id="share-dialog" aria-labelledby="share-title">
+  <div class="dlg-body" id="share-body"></div>
+</dialog>
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script>
+"use strict";
+/* ================= i18n ================= */
+const STR = {
+en: {
+  brand_sub:"A Recovery Community Center", help_btn:"Get help", lang_name:"Español",
+  tabs:{today:"Today",checkin:"Check-in",counter:"Counter",meetings:"Meetings",resources:"Resources",events:"Events",steps:"Steps",sponsors:"Sponsors"},
+  affirmation_label:"Today's affirmation",
+  affirmations:["I am stronger than my cravings.","One day at a time — today is enough.","I deserve a life in recovery.","Small steps forward are still forward.","I can ask for help — that is strength."],
+  todays_meetings:"Today's meetings", no_meetings_today:"No meetings scheduled today.",
+  view_all_meetings:"See all meetings",
+  need_help_now:"I need help now", crisis_strip:"Need help now?",
+  contacts_title:"People I can call", contacts_sub:"Add someone you can call when things get hard.",
+  contact_name_ph:"Name", contact_phone_ph:"Phone number", add:"Add",
+  no_contacts:"No contacts yet — add your first one above.",
+  coping_btn:"Coping tools",
+  // check-in
+  checkin_title:"Daily check-in", mood_q:"How are you doing right now?",
+  mood_ok:"I'm OK", mood_hard:"I'm struggling",
+  craving_q:"Craving level", craving_low:"None", craving_high:"Intense",
+  journal_title:"Journal", prompt_label:"Pick a prompt (optional)",
+  prompts:["How am I feeling?","What happened?","What I need right now","A win I'm proud of","Something I'm looking forward to","What would I say to a friend in my situation?"],
+  journal_ph:"Write freely…", gratitude_label:"One thing I'm grateful for",
+  gratitude_ph:"Gratitude…", save_checkin:"Save check-in", saved:"Saved ✓",
+  past_title:"Past check-ins", no_past:"No check-ins yet.",
+  mood_saved_ok:"Felt OK", mood_saved_hard:"Felt struggling",
+  // counter
+  counter_title:"My clean time", clean_date_q:"Enter the day your recovery began",
+  set_date:"Set date", reset_date:"Reset date", reset_confirm:"Reset your clean date? This clears the current count.",
+  days_clean:"days clean", earned:"earned", of:"of", next:"Next", in_days:"in", days_word:"days",
+  share_clean_time:"Share your clean time",
+  share_milestone_title:"Share your milestone",
+  share_btn:"Share", save_image:"Save image", close:"Close", cancel:"Cancel",
+  shared_ok:"Shared ✓", saved_img:"Image saved ✓", share_failed:"Sharing isn't available here — the image was saved instead.",
+  copy_instead:"Copy text instead",
+  card_congrats:"Congratulations!", card_odaat:"One day at a time.",
+  card_footer:"TURNING POINT RECOVERY — PADUCAH, KY",
+  total_clean_time:"Total clean time",
+  yr:"years", mo:"months", dy:"days", yr1:"year", mo1:"month", dy1:"day",
+  share_clean_text:"I'm celebrating clean time with Turning Point Recovery!",
+  // meetings
+  meetings_title:"Meetings this week", meetings_sub:"All at the Paducah center · 415 Broadway",
+  free:"Free, no sign-up.", center_phone_label:"Community Center · 270.444.3621",
+  holiday_note:"Schedules can change on holidays — call 270.444.3621 to confirm.",
+  weekend_note:"No meetings scheduled. If you need support this weekend, call the 24-hour crisis line 800.592.3980.",
+  today_badge:"Today",
+  // resources
+  coping_title:"Coping tools", services_title:"Free services",
+  services:["Peer support","Recovery meetings","Wi-Fi, computer & phone access","Snacks, coffee & water"],
+  podcast_title:"Crosstalk Recovery Podcast", podcast_desc:"Real people, real stories, real recovery.",
+  visit_title:"Visit the center", visit_addr:"415 Broadway, Paducah, KY 42001",
+  visit_hours:"Mon–Thu 8 AM–8 PM · Fri 8 AM–4:30 PM",
+  // events
+  events_title:"Events",
+  takeback_title:"National Drug Take Back Day", takeback_when:"Saturday, October 24, 2026 · 10 a.m.–2 p.m.",
+  takeback_desc:"Safely dispose of unused or expired medications. Call 270.444.3621 for local drop-off details.",
+  // crisis
+  crisis_title:"Get help now", support_now:"I need support right now",
+  crisis_line:"24-hour crisis line", crisis_line_note:"Tap to call — free, confidential, 24/7.",
+  lifeline_note:"Suicide & Crisis Lifeline — free, confidential, 24/7, in English and Spanish.",
+  center_line:"Turning Point center", center_line_note:"Peer support during business hours.",
+  call_911:"If you or someone else is in immediate danger, call 911.",
+  q988_title:"What happens when you call 988?",
+  q988_body:"You'll be connected to a trained counselor who will listen, help you stay safe, and connect you with local resources. You don't have to be suicidal to call.",
+  breathing_btn:"Try box breathing",
+  worried_title:"Worried about someone else?",
+  worried_body:"You can call 988 for guidance on helping a loved one, or bring them to the center — walk-ins are welcome during business hours.",
+  // footer
+  footer_local:"Your check-ins, journal, support contacts, and clean date are saved on this device only — nothing is shared or uploaded.",
+  delete_all:"Delete everything saved on this device",
+  delete_confirm:"Delete ALL saved data (check-ins, journal, contacts, clean date)? This cannot be undone.",
+  deleted:"Everything deleted.", frbh:"A program of Four Rivers Behavioral Health",
+  version:"Web version",
+  // breathing
+  breath_in:"Breathe in…", breath_hold:"Hold…", breath_out:"Breathe out…", breath_rest:"Rest…",
+  breath_start:"Start", breath_stop:"Stop",
+  remove:"Remove",
+  moneyTitle:"Money saved", moneyNotSet:"See how much money your sobriety is saving you.",
+  moneyDrinksPerDay:"Drinks per day (before)", moneyAlcoholType:"Drink of choice",
+  moneyBeer:"Beer", moneyWine:"Wine", moneyLiquor:"Liquor",
+  moneyPricePerDrink:"Average price per drink (USD)", moneySave:"Save", moneyEdit:"Edit",
+  moneyDrinksDay:"drinks/day", moneyEach:"each",
+  moneySubstance:"Substance", moneyAlcohol:"Alcohol", moneyDrugs:"Drugs",
+  moneyDrugOfChoice:"Drug of choice", moneySpentPerDay:"Average spent per day (USD)", moneyPerDay:"per day",
+  stepsTitle:"The 12 Steps", stepsSubtitle:"Check off each step as you complete it. Your progress is saved on this device.",
+  stepsCompleted:"completed",
+  sponsorsTitle:"My sponsors", sponsorsSubtitle:"Tap a name to call your sponsor.",
+  noSponsors:"No sponsors yet — add your first one below.",
+  tools:{
+    box:{n:"Box breathing",d:"Inhale 4 counts, hold 4, exhale 4, rest 4. Repeat to calm your nervous system."},
+    ground:{n:"5-4-3-2-1 grounding",d:"Name 5 things you see, 4 you hear, 3 you can touch, 2 you smell, 1 you taste."},
+    halt:{n:"The HALT check",d:"Hungry? Angry? Lonely? Tired? Meet the underlying need first."},
+    urge:{n:"Urge surfing",d:"Ride the wave — cravings peak and pass, usually within about 20 minutes."},
+    call:{n:"Call someone",d:"Reach out to one of your support contacts right now."},
+    write:{n:"Write it out",d:"Open your journal and get it out of your head."}
+  }
+},
+es: {
+  brand_sub:"Un Centro Comunitario de Recuperación", help_btn:"Ayuda", lang_name:"English",
+  tabs:{today:"Hoy",checkin:"Registro",counter:"Contador",meetings:"Reuniones",resources:"Recursos",events:"Eventos",steps:"Pasos",sponsors:"Padrinos"},
+  affirmation_label:"Afirmación de hoy",
+  affirmations:["Soy más fuerte que mis ansias.","Un día a la vez — hoy es suficiente.","Merezco una vida en recuperación.","Los pasos pequeños también son avance.","Puedo pedir ayuda — eso es fortaleza."],
+  todays_meetings:"Reuniones de hoy", no_meetings_today:"No hay reuniones programadas hoy.",
+  view_all_meetings:"Ver todas las reuniones",
+  need_help_now:"Necesito ayuda ahora", crisis_strip:"¿Necesitas ayuda ahora?",
+  contacts_title:"Personas a las que puedo llamar", contacts_sub:"Agrega a alguien a quien puedas llamar cuando sea difícil.",
+  contact_name_ph:"Nombre", contact_phone_ph:"Número de teléfono", add:"Agregar",
+  no_contacts:"Sin contactos todavía — agrega el primero arriba.",
+  coping_btn:"Herramientas de apoyo",
+  checkin_title:"Registro diario", mood_q:"¿Cómo estás ahora mismo?",
+  mood_ok:"Estoy bien", mood_hard:"Estoy luchando",
+  craving_q:"Nivel de ansia", craving_low:"Ninguno", craving_high:"Intenso",
+  journal_title:"Diario", prompt_label:"Elige un tema (opcional)",
+  prompts:["¿Cómo me siento?","¿Qué pasó?","Lo que necesito ahora","Un logro del que estoy orgulloso/a","Algo que espero con ilusión","¿Qué le diría a un amigo en mi situación?"],
+  journal_ph:"Escribe libremente…", gratitude_label:"Algo por lo que estoy agradecido/a",
+  gratitude_ph:"Gratitud…", save_checkin:"Guardar registro", saved:"Guardado ✓",
+  past_title:"Registros anteriores", no_past:"Sin registros todavía.",
+  mood_saved_ok:"Se sentía bien", mood_saved_hard:"Se sentía en lucha",
+  counter_title:"Mi tiempo limpio", clean_date_q:"Ingresa el día en que comenzó tu recuperación",
+  set_date:"Fijar fecha", reset_date:"Restablecer fecha", reset_confirm:"¿Restablecer tu fecha de inicio? Esto borra el conteo actual.",
+  days_clean:"días limpio/a", earned:"logrados", of:"de", next:"Próximo", in_days:"en", days_word:"días",
+  share_clean_time:"Comparte tu tiempo limpio",
+  share_milestone_title:"Comparte tu logro",
+  share_btn:"Compartir", save_image:"Guardar imagen", close:"Cerrar", cancel:"Cancelar",
+  shared_ok:"Compartido ✓", saved_img:"Imagen guardada ✓", share_failed:"No se puede compartir aquí — la imagen se guardó.",
+  copy_instead:"Copiar texto",
+  card_congrats:"¡Felicidades!", card_odaat:"Un día a la vez.",
+  card_footer:"TURNING POINT RECOVERY — PADUCAH, KY",
+  total_clean_time:"Tiempo limpio total",
+  yr:"años", mo:"meses", dy:"días", yr1:"año", mo1:"mes", dy1:"día",
+  share_clean_text:"¡Estoy celebrando mi tiempo limpio con Turning Point Recovery!",
+  meetings_title:"Reuniones de esta semana", meetings_sub:"Todas en el centro de Paducah · 415 Broadway",
+  free:"Gratis, sin inscripción.", center_phone_label:"Centro comunitario · 270.444.3621",
+  holiday_note:"Los horarios pueden cambiar en días festivos — llama al 270.444.3621 para confirmar.",
+  weekend_note:"No hay reuniones programadas. Si necesitas apoyo este fin de semana, llama a la línea de crisis 800.592.3980 (24 horas).",
+  today_badge:"Hoy",
+  coping_title:"Herramientas de apoyo", services_title:"Servicios gratuitos",
+  services:["Apoyo de pares","Reuniones de recuperación","Wi-Fi, computadoras y teléfonos","Bocadillos, café y agua"],
+  podcast_title:"Pódcast Crosstalk Recovery", podcast_desc:"Personas reales, historias reales, recuperación real.",
+  visit_title:"Visita el centro", visit_addr:"415 Broadway, Paducah, KY 42001",
+  visit_hours:"Lun–Jue 8 AM–8 PM · Vie 8 AM–4:30 PM",
+  events_title:"Eventos",
+  takeback_title:"Día Nacional de Devolución de Medicamentos", takeback_when:"Sábado, 24 de octubre de 2026 · 10 a.m.–2 p.m.",
+  takeback_desc:"Desecha de forma segura medicamentos vencidos o sin usar. Llama al 270.444.3621 para detalles locales.",
+  crisis_title:"Obtén ayuda ahora", support_now:"Necesito apoyo ahora mismo",
+  crisis_line:"Línea de crisis 24 horas", crisis_line_note:"Toca para llamar — gratis, confidencial, 24/7.",
+  lifeline_note:"Línea de Prevención del Suicidio y Crisis — gratis, confidencial, 24/7, en inglés y español.",
+  center_line:"Centro Turning Point", center_line_note:"Apoyo de pares en horario de oficina.",
+  call_911:"Si tú u otra persona está en peligro inmediato, llama al 911.",
+  q988_title:"¿Qué pasa cuando llamas al 988?",
+  q988_body:"Te conectarán con un consejero capacitado que te escuchará, te ayudará a mantenerte a salvo y te conectará con recursos locales. No tienes que tener pensamientos suicidas para llamar.",
+  breathing_btn:"Prueba la respiración cuadrada",
+  worried_title:"¿Preocupado por alguien más?",
+  worried_body:"Puedes llamar al 988 para orientación sobre cómo ayudar a un ser querido, o traerlo al centro — sin cita en horario de oficina.",
+  footer_local:"Tus registros, diario, contactos y fecha de inicio se guardan solo en este dispositivo — nada se comparte ni se sube.",
+  delete_all:"Borrar todo lo guardado en este dispositivo",
+  delete_confirm:"¿Borrar TODOS los datos guardados (registros, diario, contactos, fecha)? No se puede deshacer.",
+  deleted:"Todo borrado.", frbh:"Un programa de Four Rivers Behavioral Health",
+  version:"Versión web",
+  breath_in:"Inhala…", breath_hold:"Sostén…", breath_out:"Exhala…", breath_rest:"Descansa…",
+  breath_start:"Comenzar", breath_stop:"Detener",
+  remove:"Eliminar",
+  moneyTitle:"Dinero ahorrado", moneyNotSet:"Descubre cuánto dinero te está ahorrando tu sobriedad.",
+  moneyDrinksPerDay:"Tragos por día (antes)", moneyAlcoholType:"Bebida preferida",
+  moneyBeer:"Cerveza", moneyWine:"Vino", moneyLiquor:"Licor",
+  moneyPricePerDrink:"Precio promedio por trago (USD)", moneySave:"Guardar", moneyEdit:"Editar",
+  moneyDrinksDay:"tragos/día", moneyEach:"c/u",
+  moneySubstance:"Sustancia", moneyAlcohol:"Alcohol", moneyDrugs:"Drogas",
+  moneyDrugOfChoice:"Droga preferida", moneySpentPerDay:"Gasto promedio por día (USD)", moneyPerDay:"por día",
+  stepsTitle:"Los 12 Pasos", stepsSubtitle:"Marca cada paso a medida que lo completes. Tu progreso se guarda en este dispositivo.",
+  stepsCompleted:"completados",
+  sponsorsTitle:"Mis padrinos", sponsorsSubtitle:"Toca un nombre para llamar a tu padrino.",
+  noSponsors:"Aún no hay padrinos — agrega el primero abajo.",
+  tools:{
+    box:{n:"Respiración cuadrada",d:"Inhala 4 tiempos, sostén 4, exhala 4, descansa 4. Repite para calmar tu sistema nervioso."},
+    ground:{n:"Conexión a tierra 5-4-3-2-1",d:"Nombra 5 cosas que ves, 4 que oyes, 3 que puedes tocar, 2 que hueles, 1 que saboreas."},
+    halt:{n:"Revisa HALT",d:"¿Hambre? ¿Enojo? ¿Soledad? ¿Cansancio? Atiende primero la necesidad de fondo."},
+    urge:{n:"Surfear el impulso",d:"Monta la ola — las ansias llegan a su pico y pasan, usualmente en unos 20 minutos."},
+    call:{n:"Llama a alguien",d:"Comunícate ahora con uno de tus contactos de apoyo."},
+    write:{n:"Escríbelo",d:"Abre tu diario y sácalo de tu cabeza."}
+  }
+}};
+
+/* ================= data ================= */
+const MILESTONES = [
+  {d:1,   en:"24 hours", es:"24 horas"},
+  {d:30,  en:"30 days",  es:"30 días"},
+  {d:60,  en:"60 days",  es:"60 días"},
+  {d:90,  en:"90 days",  es:"90 días"},
+  {d:180, en:"6 months", es:"6 meses"},
+  {d:270, en:"9 months", es:"9 meses"},
+  {d:365, en:"1 year",   es:"1 año"},
+  {d:547, en:"18 months",es:"18 meses"},
+  {d:730, en:"2 years",  es:"2 años"},
+  {d:1095,en:"3 years",  es:"3 años"},
+  {d:1460,en:"4 years",  es:"4 años"},
+  {d:1825,en:"5 years",  es:"5 años"}
+];
+// JS day: 0=Sun … 6=Sat
+const MEETINGS = {
+  1:[ // Monday
+    {t:"8:00 AM", en:"Morning Meditation", es:"Meditación matutina", den:"Start the day grounded", des:"Comienza el día con calma"},
+    {t:"12:00 PM",en:"Narcotics Anonymous",es:"Narcóticos Anónimos", den:"12-step fellowship", des:"Comunidad de 12 pasos"},
+    {t:"4:00 PM", en:"Alcoholics Anonymous",es:"Alcohólicos Anónimos",den:"12-step fellowship", des:"Comunidad de 12 pasos"}
+  ],
+  2:[ // Tuesday
+    {t:"8:00 AM", en:"Morning Meditation", es:"Meditación matutina", den:"Start the day grounded", des:"Comienza el día con calma"},
+    {t:"12:00 PM",en:"Medication Assisted Recovery Anonymous",es:"Recuperación Anónima con Medicación", den:"For MAT journeys", des:"Para caminos con MAT"},
+    {t:"6:00 PM", en:"Narcotics Anonymous",es:"Narcóticos Anónimos", den:"12-step fellowship", des:"Comunidad de 12 pasos"}
+  ],
+  3:[ // Wednesday
+    {t:"8:00 AM", en:"Morning Meditation", es:"Meditación matutina", den:"Start the day grounded", des:"Comienza el día con calma"},
+    {t:"12:00 PM",en:"Narcotics Anonymous",es:"Narcóticos Anónimos", den:"12-step fellowship", des:"Comunidad de 12 pasos"},
+    {t:"4:00 PM", en:"LGBTQ+ All Recovery",es:"Recuperación LGBTQ+", den:"An affirming space", des:"Un espacio afirmativo"},
+    {t:"8:00 PM", en:"Young People in Recovery (YPR)",es:"Jóvenes en Recuperación", den:"For young people in recovery", des:"Para jóvenes en recuperación"}
+  ],
+  4:[ // Thursday
+    {t:"8:00 AM", en:"Morning Meditation", es:"Meditación matutina", den:"Start the day grounded", des:"Comienza el día con calma"},
+    {t:"12:00 PM",en:"SMART Recovery",es:"SMART Recovery", den:"Science-based tools", des:"Herramientas basadas en ciencia"},
+    {t:"6:00 PM", en:"Narcotics Anonymous",es:"Narcóticos Anónimos", den:"12-step fellowship", des:"Comunidad de 12 pasos"}
+  ],
+  5:[ // Friday
+    {t:"8:00 AM", en:"Morning Meditation", es:"Meditación matutina", den:"Start the day grounded", des:"Comienza el día con calma"},
+    {t:"12:00 PM",en:"Narcotics Anonymous",es:"Narcóticos Anónimos", den:"12-step fellowship", des:"Comunidad de 12 pasos"},
+    {t:"6:00 PM", en:"StrongHER Women's All-Recovery Group",es:"StrongHER Mujeres en Recuperación", den:"Women's group", des:"Grupo de mujeres"}
+  ]
+};
+
+/* The 12 Steps */
+const TWELVE_STEPS = [
+  {en:"We admitted we were powerless over our addiction — that our lives had become unmanageable.",
+   es:"Admitimos que éramos impotentes ante nuestra adicción, que nuestras vidas se habían vuelto ingobernables."},
+  {en:"Came to believe that a Power greater than ourselves could restore us to sanity.",
+   es:"Llegamos a creer que un Poder superior a nosotros mismos podría devolvernos el sano juicio."},
+  {en:"Made a decision to turn our will and our lives over to the care of God as we understood Him.",
+   es:"Decidimos poner nuestras voluntades y nuestras vidas al cuidado de Dios, como nosotros lo concebimos."},
+  {en:"Made a searching and fearless moral inventory of ourselves.",
+   es:"Sin miedo hicimos un minucioso inventario moral de nosotros mismos."},
+  {en:"Admitted to God, to ourselves, and to another human being the exact nature of our wrongs.",
+   es:"Admitimos ante Dios, ante nosotros mismos, y ante otro ser humano, la naturaleza exacta de nuestros defectos."},
+  {en:"Were entirely ready to have God remove all these defects of character.",
+   es:"Estuvimos enteramente dispuestos a dejar que Dios nos liberase de nuestros defectos."},
+  {en:"Humbly asked Him to remove our shortcomings.",
+   es:"Humildemente le pedimos que nos liberase de nuestros defectos."},
+  {en:"Made a list of all persons we had harmed, and became willing to make amends to them all.",
+   es:"Hicimos una lista de todas aquellas personas a quienes habíamos ofendido y estuvimos dispuestos a reparar el daño que les causamos."},
+  {en:"Made direct amends to such people wherever possible, except when to do so would injure them or others.",
+   es:"Reparamos directamente a cuantos nos fue posible el daño causado, excepto cuando el hacerlo implicaba perjuicio para ellos o para otros."},
+  {en:"Continued to take personal inventory and when we were wrong promptly admitted it.",
+   es:"Continuamos haciendo nuestro inventario personal y cuando nos equivocábamos lo admitíamos inmediatamente."},
+  {en:"Sought through prayer and meditation to improve our conscious contact with God as we understood Him, praying only for knowledge of His will for us and the power to carry that out.",
+   es:"Buscamos a través de la oración y la meditación mejorar nuestro contacto consciente con Dios, como nosotros lo concebimos, pidiéndole solamente que nos dejase conocer su voluntad para con nosotros y nos diese la fortaleza para cumplirla."},
+  {en:"Having had a spiritual awakening as the result of these steps, we tried to carry this message to addicts, and to practice these principles in all our affairs.",
+   es:"Habiendo obtenido un despertar espiritual como resultado de estos pasos, tratamos de llevar el mensaje a otros adictos y de practicar estos principios en todos nuestros asuntos."}
+];
+
+/** Default average USD price per drink by type (user-editable in the app). */
+function defaultDrinkPrice(type){
+  return type==="wine" ? 3.50 : type==="liquor" ? 4.50 : 2.00;
+}
+function drinkTypeLabel(type){ return t()["money"+cap(type)]; }
+function usd(n){ return new Intl.NumberFormat("en-US",{style:"currency",currency:"USD"}).format(n); }
+
+/* ================= storage & state ================= */
+const store = {
+  get(k,f){ try{ const v = localStorage.getItem("tpr_"+k); return v==null?f:JSON.parse(v);}catch(e){ return f; } },
+  set(k,v){ try{ localStorage.setItem("tpr_"+k, JSON.stringify(v)); }catch(e){} },
+  del(k){ try{ localStorage.removeItem("tpr_"+k); }catch(e){} }
+};
+let lang = store.get("lang","en");
+let tab = "today";
+const $ = s => document.querySelector(s);
+function t(){ return STR[lang]; }
+function esc(s){ return String(s==null?"":s).replace(/[&<>"']/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c])); }
+function toast(msg){ const el=$("#toast"); el.textContent=msg; el.classList.add("show"); clearTimeout(toast._t); toast._t=setTimeout(()=>el.classList.remove("show"),2200); }
+function tel(num){ return "tel:"+String(num).replace(/\D/g,""); }
+function dayName(jsDay){
+  const d = new Date(2026,9,4+jsDay); // Oct 4 2026 = Sunday
+  return d.toLocaleDateString(lang==="es"?"es":"en",{weekday:"long"});
+}
+function cap(s){ return s.charAt(0).toUpperCase()+s.slice(1); }
+function cleanDays(){
+  const iso = store.get("cleanDate",null);
+  if(!iso) return null;
+  const start = new Date(iso+"T12:00:00");
+  const now = new Date();
+  const ms = now - start;
+  if(ms < 0) return 0;
+  return Math.floor(ms/86400000);
+}
+
+/* ================= navigation ================= */
+const TABS = ["today","checkin","counter","meetings","resources","events","steps","sponsors"];
+function renderTabs(){
+  $("#tabs").innerHTML = TABS.map(id=>
+    `<button class="tab" role="tab" data-tab="${id}" aria-selected="${tab===id}">${esc(t().tabs[id])}</button>`
+  ).join("");
+  document.querySelectorAll(".tab").forEach(b=>b.addEventListener("click",()=>{ tab=b.dataset.tab; render(); }));
+}
+function render(){
+  document.documentElement.lang = lang;
+  $("#brand-sub").textContent = t().brand_sub;
+  $("#help-btn-label").textContent = t().help_btn;
+  $("#lang-btn").textContent = lang==="en"?"ES":"EN";
+  $("#lang-btn").setAttribute("aria-label", lang==="en" ? "Cambiar a español" : "Switch to English");
+  renderTabs();
+  ({today:renderToday,checkin:renderCheckin,counter:renderCounter,meetings:renderMeetings,resources:renderResources,events:renderEvents,steps:renderSteps,sponsors:renderSponsors})[tab]();
+  renderFooter();
+  window.scrollTo({top:0});
+}
+$("#lang-btn").addEventListener("click",()=>{ lang = lang==="en"?"es":"en"; store.set("lang",lang); render(); });
+$("#help-btn").addEventListener("click", openCrisis);
+function go(id){ tab=id; render(); }
+
+/* ================= TODAY ================= */
+function affirmation(){
+  const arr = t().affirmations;
+  const day = Math.floor(Date.now()/86400000);
+  return arr[day % arr.length];
+}
+function todaysMeetingsHTML(){
+  const jsDay = new Date().getDay();
+  const list = MEETINGS[jsDay];
+  if(!list || !list.length) return `<p class="muted">${esc(t().no_meetings_today)}</p>`;
+  return list.map(m=>`
+    <div class="meet"><time>${esc(m.t)}</time>
+      <div><div class="m-name">${esc(lang==="es"?m.es:m.en)}</div>
+      <div class="m-desc">${esc(lang==="es"?m.des:m.den)}</div></div>
+    </div>`).join("");
+}
+function contactsHTML(){
+  const cs = store.get("contacts",[]);
+  if(!cs.length) return `<p class="muted small">${esc(t().no_contacts)}</p>`;
+  return cs.map((c,i)=>`
+    <div class="row space-between" style="padding:8px 0;border-bottom:1px dashed var(--line)">
+      <a class="tel-link plain" href="${tel(c.phone)}" aria-label="${esc(c.name)} — ${esc(c.phone)}">📞 ${esc(c.name)}</a>
+      <button class="btn btn-ghost btn-sm" data-del-contact="${i}" aria-label="Delete ${esc(c.name)}">✕</button>
+    </div>`).join("");
+}
+function renderToday(){
+  $("#view").innerHTML = `
+    <section class="affirmation" aria-label="${esc(t().affirmation_label)}">
+      <p class="eyebrow" style="color:#fff;opacity:.85">${esc(t().affirmation_label)}</p>
+      <blockquote>“${esc(affirmation())}”</blockquote>
+    </section>
+    <section class="card" aria-label="${esc(t().todays_meetings)}">
+      <p class="eyebrow">${esc(t().todays_meetings)}</p>
+      ${todaysMeetingsHTML()}
+      <button class="btn btn-ghost btn-sm" data-go="meetings">→ ${esc(t().view_all_meetings)}</button>
+    </section>
+    <section class="card">
+      <button class="btn btn-danger btn-block" data-crisis>🆘 ${esc(t().need_help_now)}</button>
+    </section>
+    <section class="card" aria-label="${esc(t().contacts_title)}">
+      <h2>${esc(t().contacts_title)}</h2>
+      <p class="muted small">${esc(t().contacts_sub)}</p>
+      <div id="contacts-list">${contactsHTML()}</div>
+      <div class="row mt">
+        <input type="text" id="c-name" placeholder="${esc(t().contact_name_ph)}" aria-label="${esc(t().contact_name_ph)}" style="flex:2;min-width:140px">
+        <input type="tel" id="c-phone" placeholder="${esc(t().contact_phone_ph)}" aria-label="${esc(t().contact_phone_ph)}" style="flex:2;min-width:140px">
+        <button class="btn btn-primary btn-sm" id="c-add">${esc(t().add)}</button>
+      </div>
+    </section>
+    <section class="card">
+      <h2>${esc(t().coping_btn)}</h2>
+      <button class="btn btn-outline btn-block" data-go="resources">→ ${esc(t().coping_title)}</button>
+    </section>
+    <section class="crisis-strip" aria-label="${esc(t().crisis_strip)}">
+      <strong>${esc(t().crisis_strip)}</strong><br>
+      <a class="tel-link" href="${tel("8005923980")}">📞 800.592.3980</a>
+      <a class="tel-link" href="${tel("988")}">📞 988</a>
+    </section>`;
+  bindCommon();
+  $("#c-add").addEventListener("click",()=>{
+    const n=$("#c-name").value.trim(), p=$("#c-phone").value.trim();
+    if(!n||!p){ toast("⚠"); return; }
+    const cs=store.get("contacts",[]); cs.push({name:n,phone:p}); store.set("contacts",cs);
+    $("#contacts-list").innerHTML=contactsHTML(); bindCommon();
+    $("#c-name").value=""; $("#c-phone").value=""; toast(t().saved);
+  });
+}
+function bindCommon(){
+  document.querySelectorAll("[data-go]:not([data-bound])").forEach(b=>{ b.dataset.bound="1"; b.addEventListener("click",()=>go(b.dataset.go)); });
+  document.querySelectorAll("[data-crisis]:not([data-bound])").forEach(b=>{ b.dataset.bound="1"; b.addEventListener("click",openCrisis); });
+  document.querySelectorAll("[data-del-contact]:not([data-bound])").forEach(b=>{ b.dataset.bound="1"; b.addEventListener("click",()=>{
+    const cs=store.get("contacts",[]); cs.splice(+b.dataset.delContact,1); store.set("contacts",cs);
+    $("#contacts-list").innerHTML=contactsHTML(); bindCommon();
+  }); });
+}
+
+/* ================= CHECK-IN ================= */
+let ciMood=null, ciPrompt="";
+function renderCheckin(){
+  ciMood=null; ciPrompt="";
+  const past = store.get("checkins",[]);
+  $("#view").innerHTML=`
+    <section class="card" aria-label="${esc(t().checkin_title)}">
+      <h2>${esc(t().checkin_title)}</h2>
+      <label class="f" id="mood-q">${esc(t().mood_q)}</label>
+      <div class="seg" role="group" aria-labelledby="mood-q">
+        <button id="m-ok" aria-pressed="false">🙂 ${esc(t().mood_ok)}</button>
+        <button id="m-hard" aria-pressed="false">😟 ${esc(t().mood_hard)}</button>
+      </div>
+      <label class="f" for="craving">${esc(t().craving_q)}: <span id="craving-val">0</span>/10</label>
+      <div class="row"><span class="small muted">${esc(t().craving_low)}</span>
+        <input type="range" id="craving" min="0" max="10" value="0" style="flex:1" aria-label="${esc(t().craving_q)}">
+        <span class="small muted">${esc(t().craving_high)}</span></div>
+    </section>
+    <section class="card" aria-label="${esc(t().journal_title)}">
+      <h2>${esc(t().journal_title)}</h2>
+      <p class="small muted" style="margin-top:0">${esc(t().prompt_label)}</p>
+      <div class="prompt-chips" id="prompts">${t().prompts.map((p,i)=>`<button data-p="${i}">${esc(p)}</button>`).join("")}</div>
+      <textarea id="j-text" placeholder="${esc(t().journal_ph)}" aria-label="${esc(t().journal_title)}"></textarea>
+      <label class="f" for="j-grat">${esc(t().gratitude_label)}</label>
+      <input type="text" id="j-grat" placeholder="${esc(t().gratitude_ph)}">
+      <button class="btn btn-primary btn-block mt" id="ci-save">✓ ${esc(t().save_checkin)}</button>
+    </section>
+    <section class="card" aria-label="${esc(t().past_title)}">
+      <h2>${esc(t().past_title)}</h2>
+      ${past.length? past.map(e=>`
+        <div class="entry">
+          <div class="e-date">${esc(fmtDate(e.date))} · ${e.mood==="ok"?esc(t().mood_saved_ok):esc(t().mood_saved_hard)} · ${esc(t().craving_q)} ${e.craving}/10</div>
+          ${e.prompt?`<div class="small"><strong>${esc(e.prompt)}</strong></div>`:""}
+          ${e.text?`<p style="margin:6px 0">${esc(e.text)}</p>`:""}
+          ${e.grat?`<div class="small">🙏 ${esc(e.grat)}</div>`:""}
+        </div>`).join("") : `<p class="muted">${esc(t().no_past)}</p>`}
+    </section>`;
+  const setMood=m=>{ ciMood=m;
+    $("#m-ok").setAttribute("aria-pressed",m==="ok"); $("#m-hard").setAttribute("aria-pressed",m==="hard"); };
+  $("#m-ok").addEventListener("click",()=>setMood("ok"));
+  $("#m-hard").addEventListener("click",()=>setMood("hard"));
+  $("#craving").addEventListener("input",e=>$("#craving-val").textContent=e.target.value);
+  document.querySelectorAll("#prompts button").forEach(b=>b.addEventListener("click",()=>{
+    ciPrompt=t().prompts[+b.dataset.p];
+    document.querySelectorAll("#prompts button").forEach(x=>x.style.borderColor="");
+    b.style.borderColor="var(--teal)"; b.style.borderWidth="2.5px";
+    const ta=$("#j-text"); if(!ta.value) ta.focus();
+  }));
+  $("#ci-save").addEventListener("click",()=>{
+    const e={ date:new Date().toISOString(), mood:ciMood||"ok",
+      craving:+$("#craving").value, prompt:ciPrompt,
+      text:$("#j-text").value.trim(), grat:$("#j-grat").value.trim() };
+    const arr=store.get("checkins",[]); arr.unshift(e); store.set("checkins",arr.slice(0,200));
+    toast(t().saved); renderCheckin();
+  });
+}
+function fmtDate(iso){
+  try{ return new Date(iso).toLocaleDateString(lang==="es"?"es":"en",{month:"short",day:"numeric",year:"numeric"}); }
+  catch(e){ return iso; }
+}
+
+/* ================= COUNTER ================= */
+function breakdown(days){
+  const y=Math.floor(days/365), r=days%365, m=Math.floor(r/30), d=r%30;
+  return {y,m,d};
+}
+function plural(n,one,many){ return n+" "+(n===1?one:many); }
+function breakdownStr(days){
+  const b=breakdown(days);
+  return [plural(b.y,t().yr1,t().yr),plural(b.m,t().mo1,t().mo),plural(b.d,t().dy1,t().dy)].join(", ");
+}
+function renderCounter(){
+  const days = cleanDays();
+  let body="";
+  if(days==null){
+    body=`
+    <section class="card">
+      <h2>${esc(t().counter_title)}</h2>
+      <label class="f" for="clean-date">${esc(t().clean_date_q)}</label>
+      <input type="date" id="clean-date" max="${new Date().toISOString().slice(0,10)}">
+      <button class="btn btn-primary btn-block mt" id="set-date">✓ ${esc(t().set_date)}</button>
+    </section>`;
+  } else {
+    const earned = MILESTONES.filter(m=>days>=m.d);
+    const next = MILESTONES.find(m=>days<m.d);
+    body=`
+    <section class="card" style="text-align:center">
+      <p class="eyebrow">${esc(t().counter_title)}</p>
+      <div style="font-size:56px;font-weight:800;color:var(--teal);line-height:1.1">${days}</div>
+      <div class="muted" style="font-weight:700">${esc(t().days_clean)}</div>
+      <div class="small muted mt">${esc(breakdownStr(days))}</div>
+      <div class="row mt" style="justify-content:center">
+        <button class="btn btn-primary" id="share-clean">📤 ${esc(t().share_clean_time)}</button>
+        <button class="btn btn-ghost btn-sm" id="reset-date">${esc(t().reset_date)}</button>
+      </div>
+    </section>
+    <div id="money-slot">${moneyCardHTML(days)}</div>
+    <section class="card" aria-label="Milestones">
+      <p class="eyebrow">${earned.length} ${esc(t().of)} ${MILESTONES.length} ${esc(t().earned)}</p>
+      <div class="chips">
+        ${MILESTONES.map(m=>{
+          const isE = days>=m.d, isN = next && m.d===next.d;
+          const label = lang==="es"?m.es:m.en;
+          return `<button class="chip${isE?" earned":""}${isN&&!isE?" next":""}" ${isE?`data-ms="${m.d}" aria-label="${esc(t().share_milestone_title)}: ${esc(label)}"`:`disabled aria-disabled="true"`}>
+            <span class="dot" aria-hidden="true"></span>${esc(label)}</button>`;
+        }).join("")}
+      </div>
+      ${next?`<p class="muted"><strong>${esc(t().next)}:</strong> ${esc(lang==="es"?next.es:next.en)} — ${esc(t().in_days)} ${next.d-days} ${esc(t().days_word)}</p>`:""}
+    </section>`;
+  }
+  $("#view").innerHTML = body;
+  if(days==null){
+    $("#set-date").addEventListener("click",()=>{
+      const v=$("#clean-date").value;
+      if(!v) return;
+      store.set("cleanDate",v); renderCounter(); toast(t().saved);
+    });
+  } else {
+    $("#reset-date").addEventListener("click",()=>{
+      if(confirm(t().reset_confirm)){ store.del("cleanDate"); renderCounter(); }
+    });
+    $("#share-clean").addEventListener("click",()=>openShareDialog("clean"));
+    bindMoney();
+    document.querySelectorAll("[data-ms]").forEach(b=>b.addEventListener("click",()=>{
+      const m=MILESTONES.find(x=>x.d===+b.dataset.ms);
+      openShareDialog("milestone",m);
+    }));
+  }
+}
+
+/* ---- share cards (canvas) ---- */
+function drawCard({kicker,big,sub}){
+  const W=1080,H=1350, c=document.createElement("canvas"); c.width=W; c.height=H;
+  const x=c.getContext("2d");
+  const g=x.createLinearGradient(0,0,W,H); g.addColorStop(0,"#0b6e64"); g.addColorStop(1,"#149a8b");
+  x.fillStyle=g; x.fillRect(0,0,W,H);
+  // decorative circles
+  x.globalAlpha=.12; x.fillStyle="#ffffff";
+  x.beginPath(); x.arc(120,180,150,0,7); x.fill();
+  x.beginPath(); x.arc(980,1150,210,0,7); x.fill();
+  x.globalAlpha=1;
+  // white panel
+  const px=70,py=300,pw=W-140,ph=H-560;
+  x.fillStyle="#ffffff";
+  x.beginPath(); x.roundRect(px,py,pw,ph,48); x.fill();
+  x.textAlign="center"; x.fillStyle="#0b6e64";
+  x.font="800 54px system-ui,sans-serif";
+  x.fillText(kicker, W/2, py+120);
+  x.fillStyle="#2b2620"; x.font="800 92px system-ui,sans-serif";
+  const words=big.split(" "); let lines=[""];
+  words.forEach(w=>{ const last=lines[lines.length-1];
+    if(x.measureText(last+" "+w).width>pw-140) lines.push(w); else lines[lines.length-1]=(last+" "+w).trim(); });
+  lines.forEach((ln,i)=>x.fillText(ln, W/2, py+300+i*110));
+  x.fillStyle="#6b6259"; x.font="600 44px system-ui,sans-serif";
+  x.fillText(sub, W/2, py+ph-110);
+  // footer band
+  x.fillStyle="rgba(255,255,255,.92)";
+  x.beginPath(); x.roundRect(px,H-200,pw,130,32); x.fill();
+  x.fillStyle="#0b6e64"; x.font="800 34px system-ui,sans-serif";
+  x.fillText(t().card_footer, W/2, H-122);
+  return c;
+}
+function milestoneCard(m){
+  const label = lang==="es"?m.es:m.en;
+  const big = lang==="es" ? `${label} de recuperación` : `${label} of recovery`;
+  return drawCard({kicker:t().card_congrats, big, sub:t().card_odaat});
+}
+function cleanTimeCard(days){
+  const big = lang==="es" ? `${days} días limpio/a` : `${days} days clean`;
+  return drawCard({kicker:t().total_clean_time, big, sub:breakdownStr(days)});
+}
+function downloadBlob(blob,name){
+  const a=document.createElement("a");
+  a.href=URL.createObjectURL(blob); a.download=name;
+  document.body.appendChild(a); a.click();
+  setTimeout(()=>{ try{ URL.revokeObjectURL(a.href); }catch(e){} a.remove(); },4000);
+}
+async function shareCanvas(canvas,{title,text}){
+  const blob = await new Promise(r=>canvas.toBlob(r,"image/png"));
+  const file = new File([blob],"turning-point.png",{type:"image/png"});
+  try{
+    if(navigator.canShare && navigator.canShare({files:[file]})){
+      await navigator.share({files:[file],title,text});
+      toast(t().shared_ok); return true;
+    }
+    if(navigator.share){ await navigator.share({title,text}); toast(t().shared_ok); return true; }
+  }catch(e){ if(e && e.name==="AbortError") return true; /* user cancelled */ }
+  downloadBlob(blob,"turning-point.png");
+  toast(t().share_failed); return false;
+}
+let shareCtx=null;
+function openShareDialog(kind,m){
+  const days=cleanDays()||0;
+  const canvas = kind==="clean" ? cleanTimeCard(days) : milestoneCard(m);
+  const label = kind==="clean" ? t().share_clean_time : (lang==="es"?m.es:m.en);
+  const text = kind==="clean" ? `${t().share_clean_text} ${days} ${t().days_word} — ${breakdownStr(days)}.` : `${t().share_clean_text} ${label}.`;
+  shareCtx={canvas,title:label,text};
+  $("#share-body").innerHTML=`
+    <h2 id="share-title">${esc(t().share_milestone_title)}</h2>
+    <img class="share-card-preview" id="share-preview" alt="${esc(label)}">
+    <div class="dlg-actions">
+      <button class="btn btn-primary" id="sh-share">📤 ${esc(t().share_btn)}</button>
+      <button class="btn btn-outline" id="sh-save">⬇ ${esc(t().save_image)}</button>
+      <button class="btn btn-ghost" id="sh-close">${esc(t().close)}</button>
+    </div>`;
+  $("#share-preview").src = canvas.toDataURL("image/png");
+  const dlg=$("#share-dialog"); dlg.showModal();
+  $("#sh-share").addEventListener("click",async()=>{ await shareCanvas(canvas,{title:label,text}); });
+  $("#sh-save").addEventListener("click",()=>{
+    canvas.toBlob(b=>{ downloadBlob(b,"turning-point.png"); toast(t().saved_img); },"image/png");
+  });
+  $("#sh-close").addEventListener("click",()=>dlg.close());
+}
+$("#share-dialog").addEventListener("click",e=>{ if(e.target.id==="share-dialog") e.target.close(); });
+
+/* ================= MEETINGS ================= */
+function renderMeetings(){
+  const today=new Date().getDay();
+  const order=[1,2,3,4,5,6,0]; // Mon..Sun
+  $("#view").innerHTML=`
+    <section class="card">
+      <h2>${esc(t().meetings_title)}</h2>
+      <p class="muted" style="margin-top:0">${esc(t().meetings_sub)}</p>
+      <p><strong>${esc(t().free)}</strong></p>
+      <a class="tel-link teal" href="${tel("2704443621")}">📞 ${esc(t().center_phone_label)}</a>
+      <p class="small muted">${esc(t().holiday_note)}</p>
+    </section>
+    ${order.map(d=>{
+      const name=cap(dayName(d));
+      const list=MEETINGS[d];
+      const inner = list ? list.map(m=>`
+        <div class="meet"><time>${esc(m.t)}</time>
+          <div><div class="m-name">${esc(lang==="es"?m.es:m.en)}</div>
+          <div class="m-desc">${esc(lang==="es"?m.des:m.den)}</div></div>
+        </div>`).join("")
+        : `<p class="muted small">${esc(t().weekend_note)}</p>`;
+      return `<h3 class="meet-day">${esc(name)}${d===today?` <span class="today-badge">${esc(t().today_badge)}</span>`:""}</h3>${inner}`;
+    }).join("")}`;
+}
+
+/* ================= RESOURCES ================= */
+let breathTimer=null;
+function renderResources(){
+  const tools=t().tools;
+  $("#view").innerHTML=`
+    <section class="card" aria-label="${esc(t().coping_title)}">
+      <h2>${esc(t().coping_title)}</h2>
+      ${Object.entries(tools).map(([k,v])=>`
+        <div class="entry"><div class="m-name">${esc(v.n)}</div><div class="m-desc">${esc(v.d)}</div>
+        ${k==="box"?`<button class="btn btn-outline btn-sm mt" id="breath-open">▶ ${esc(v.n)}</button>
+          <div id="breath-ui" hidden>
+            <div class="breath-stage">
+              <div class="breath-box" id="breath-box" role="status" aria-live="polite">${esc(t().breath_in)}</div>
+              <div class="row" style="justify-content:center">
+                <button class="btn btn-primary btn-sm" id="breath-start">${esc(t().breath_start)}</button>
+                <button class="btn btn-outline btn-sm" id="breath-stop">${esc(t().breath_stop)}</button>
+              </div>
+            </div>
+          </div>`:""}
+        ${k==="call"?`<div class="row mt"><button class="btn btn-outline btn-sm" data-go="today">→ ${esc(t().contacts_title)}</button></div>`:""}
+        ${k==="write"?`<div class="row mt"><button class="btn btn-outline btn-sm" data-go="checkin">→ ${esc(t().journal_title)}</button></div>`:""}
+        </div>`).join("")}
+    </section>
+    <section class="card" aria-label="${esc(t().services_title)}">
+      <h2>${esc(t().services_title)}</h2>
+      <ul class="clean">${t().services.map(s=>`<li>✓ ${esc(s)}</li>`).join("")}</ul>
+    </section>
+    <section class="card">
+      <p class="eyebrow">🎙️ Podcast</p>
+      <h2 style="margin-top:0">${esc(t().podcast_title)}</h2>
+      <p class="muted">${esc(t().podcast_desc)}</p>
+    </section>
+    <section class="card" aria-label="${esc(t().visit_title)}">
+      <h2>${esc(t().visit_title)}</h2>
+      <div class="kv"><span>📍</span><span>${esc(t().visit_addr)}</span></div>
+      <div class="kv"><span>🕗</span><span>${esc(t().visit_hours)}</span></div>
+      <div class="kv"><span>📞</span><span><a class="tel-link plain" href="${tel("2704443621")}">270.444.3621</a></span></div>
+      <div class="kv"><span>🌐</span><span>4rbhTurningPoint.org</span></div>
+      <div class="kv"><span>📘</span><span>Facebook @FourRiversTurningPoint</span></div>
+      <div class="kv"><span>✉️</span><span>TurningPoint@4rbh.org</span></div>
+    </section>`;
+  bindCommon();
+  const open=$("#breath-open");
+  if(open) open.addEventListener("click",()=>{ const ui=$("#breath-ui"); ui.hidden=!ui.hidden; open.textContent=(ui.hidden?"▶ ":"▼ ")+tools.box.n; });
+  const start=$("#breath-start");
+  if(start){
+    start.addEventListener("click",()=>{
+      stopBreath();
+      const box=$("#breath-box");
+      const phases=[[t().breath_in,"in",4000],[t().breath_hold,"hold",4000],[t().breath_out,"out",4000],[t().breath_rest,"",4000]];
+      let i=0;
+      const step=()=>{ const [label,cls,ms]=phases[i%4];
+        box.textContent=label; box.className="breath-box "+cls;
+        breathTimer=setTimeout(()=>{ i++; step(); },ms); };
+      step();
+    });
+    $("#breath-stop").addEventListener("click",stopBreath);
+  }
+}
+function stopBreath(){ if(breathTimer){ clearTimeout(breathTimer); breathTimer=null; } }
+
+/* ================= EVENTS ================= */
+function renderEvents(){
+  $("#view").innerHTML=`
+    <section class="card">
+      <p class="eyebrow">${esc(t().events_title)}</p>
+      <h2 style="margin-top:0">🗓️ ${esc(t().takeback_title)}</h2>
+      <p><strong>${esc(t().takeback_when)}</strong></p>
+      <p class="muted">${esc(t().takeback_desc)}</p>
+    </section>`;
+}
+
+/* ================= CRISIS ================= */
+function openCrisis(){
+  $("#crisis-body").innerHTML=`
+    <h2 id="crisis-title">🆘 ${esc(t().crisis_title)}</h2>
+    <p class="muted">${esc(t().support_now)}</p>
+    <a class="tel-link btn-block" style="justify-content:center" href="${tel("8005923980")}">📞 800.592.3980</a>
+    <p class="small muted">${esc(t().crisis_line)} — ${esc(t().crisis_line_note)}</p>
+    <div class="divider"></div>
+    <a class="tel-link btn-block" style="justify-content:center" href="${tel("988")}">📞 988</a>
+    <p class="small muted">${esc(t().lifeline_note)}</p>
+    <div class="divider"></div>
+    <a class="tel-link teal btn-block" style="justify-content:center" href="${tel("2704443621")}">📞 270.444.3621</a>
+    <p class="small muted">${esc(t().center_line)} — ${esc(t().center_line_note)}</p>
+    <div class="divider"></div>
+    <p class="small"><strong>⚠️ ${esc(t().call_911)}</strong></p>
+    <h3>${esc(t().q988_title)}</h3>
+    <p class="small muted">${esc(t().q988_body)}</p>
+    <h3>${esc(t().worried_title)}</h3>
+    <p class="small muted">${esc(t().worried_body)}</p>
+    <div class="dlg-actions">
+      <button class="btn btn-outline" id="crisis-breath">🫁 ${esc(t().breathing_btn)}</button>
+      <button class="btn btn-ghost" id="crisis-close">${esc(t().close)}</button>
+    </div>`;
+  const dlg=$("#crisis-dialog"); dlg.showModal();
+  $("#crisis-close").addEventListener("click",()=>dlg.close());
+  $("#crisis-breath").addEventListener("click",()=>{ dlg.close(); tab="resources"; render(); setTimeout(()=>{ const b=$("#breath-open"); if(b) b.click(); },50); });
+}
+$("#crisis-dialog").addEventListener("click",e=>{ if(e.target.id==="crisis-dialog") e.target.close(); });
+
+/* ================= FOOTER ================= */
+function renderFooter(){
+  $("#site-footer").innerHTML=`
+    <section class="crisis-strip" aria-label="${esc(t().crisis_strip)}">
+      <strong>${esc(t().crisis_strip)}</strong><br>
+      <a class="tel-link" href="${tel("8005923980")}">📞 800.592.3980</a>
+      <a class="tel-link" href="${tel("988")}">📞 988</a>
+    </section>
+    <p class="small">🔒 ${esc(t().footer_local)}</p>
+    <button class="btn btn-danger btn-sm" id="wipe">🗑 ${esc(t().delete_all)}</button>
+    <p class="small mt">💚 ${esc(t().frbh)}<br><span class="muted">${esc(t().version)}</span></p>`;
+  $("#wipe").addEventListener("click",()=>{
+    if(confirm(t().delete_confirm)){
+      ["lang","cleanDate","checkins","contacts"].forEach(k=>store.del(k));
+      lang="en"; toast(t().deleted); render();
+    }
+  });
+}
+
+/* ================= MONEY SAVED ================= */
+function moneySubstance(){ return store.get("moneySubstance","alcohol"); }
+function moneyConfigured(){
+  return moneySubstance()==="drugs"
+    ? (parseFloat(store.get("spendPerDay","0"))>0)
+    : (parseInt(store.get("drinksPerDay","0"),10)>0);
+}
+function moneyCardHTML(days){
+  if(!moneyConfigured()){
+    return `<section class="card" aria-label="${esc(t().moneyTitle)}">
+      <h2>💰 ${esc(t().moneyTitle)}</h2>
+      <p class="muted">${esc(t().moneyNotSet)}</p>
+      ${moneyFormHTML()}
+    </section>`;
+  }
+  const sub = moneySubstance();
+  let total, detail;
+  if(sub==="drugs"){
+    const spend = parseFloat(store.get("spendPerDay","0"))||0;
+    total = days*spend;
+    const name = store.get("drugName","");
+    detail = (name?esc(name)+" · ":"")+usd(spend)+" "+esc(t().moneyPerDay);
+  } else {
+    const dp = parseInt(store.get("drinksPerDay","0"),10);
+    const type = store.get("alcoholType","beer");
+    const price = parseFloat(store.get("pricePerDrink","2.00"))||0;
+    total = days*dp*price;
+    detail = `${dp} ${esc(t().moneyDrinksDay)} · ${esc(drinkTypeLabel(type))} · ${usd(price)} ${esc(t().moneyEach)}`;
+  }
+  return `<section class="card" aria-label="${esc(t().moneyTitle)}">
+    <h2>💰 ${esc(t().moneyTitle)}</h2>
+    <div style="font-size:44px;font-weight:800;color:var(--teal);line-height:1.1">${usd(total)}</div>
+    <p class="muted small" style="margin:6px 0">${detail}</p>
+    <div id="money-edit-wrap" hidden>${moneyFormHTML()}</div>
+    <button class="btn btn-outline btn-sm" id="money-edit">✏️ ${esc(t().moneyEdit)}</button>
+  </section>`;
+}
+function moneyFormHTML(){
+  const sub = moneySubstance();
+  const type = store.get("alcoholType","beer");
+  const dp = store.get("drinksPerDay","");
+  const price = store.get("pricePerDrink", defaultDrinkPrice(type).toFixed(2));
+  const drug = store.get("drugName","");
+  const spend = store.get("spendPerDay","");
+  return `
+    <label class="f" id="m-sub-label">${esc(t().moneySubstance)}</label>
+    <div class="seg" role="radiogroup" aria-labelledby="m-sub-label">
+      ${["alcohol","drugs"].map(k=>`<button data-msub="${k}" role="radio" aria-checked="${sub===k}">${esc(t()["money"+cap(k)])}</button>`).join("")}
+    </div>
+    <div id="m-alcohol-fields" ${sub==="drugs"?"hidden":""}>
+      <label class="f" for="m-drinks">${esc(t().moneyDrinksPerDay)}</label>
+      <input type="number" id="m-drinks" min="1" max="100" value="${dp}" inputmode="numeric" aria-label="${esc(t().moneyDrinksPerDay)}">
+      <label class="f" id="m-type-label">${esc(t().moneyAlcoholType)}</label>
+      <div class="seg" role="radiogroup" aria-labelledby="m-type-label">
+        ${["beer","wine","liquor"].map(k=>`<button data-mtype="${k}" role="radio" aria-checked="${type===k}">${esc(t()["money"+cap(k)])}</button>`).join("")}
+      </div>
+      <label class="f" for="m-price">${esc(t().moneyPricePerDrink)}</label>
+      <input type="number" id="m-price" min="0.01" step="0.01" value="${price}" inputmode="decimal">
+    </div>
+    <div id="m-drugs-fields" ${sub==="alcohol"?"hidden":""}>
+      <label class="f" for="m-drug">${esc(t().moneyDrugOfChoice)}</label>
+      <input type="text" id="m-drug" value="${esc(drug)}" maxlength="40" aria-label="${esc(t().moneyDrugOfChoice)}">
+      <label class="f" for="m-spend">${esc(t().moneySpentPerDay)}</label>
+      <input type="number" id="m-spend" min="0.01" step="0.01" value="${spend}" inputmode="decimal">
+    </div>
+    <button class="btn btn-primary btn-block mt" id="m-save">✓ ${esc(t().moneySave)}</button>`;
+}
+function bindMoney(){
+  if(!$("#m-drinks")) return;
+  let selType = store.get("alcoholType","beer");
+  let selSub = moneySubstance();
+  let priceTouched = false;
+  const paintType = ()=>{
+    document.querySelectorAll("[data-mtype]").forEach(x=>{
+      const on = x.dataset.mtype===selType;
+      x.setAttribute("aria-checked", on);
+      x.style.borderColor = on ? "var(--teal)" : "";
+      x.style.borderWidth = on ? "2.5px" : "";
+    });
+  };
+  const paintSub = ()=>{
+    document.querySelectorAll("[data-msub]").forEach(x=>{
+      const on = x.dataset.msub===selSub;
+      x.setAttribute("aria-checked", on);
+      x.style.borderColor = on ? "var(--teal)" : "";
+      x.style.borderWidth = on ? "2.5px" : "";
+    });
+    const af = $("#m-alcohol-fields"), df = $("#m-drugs-fields");
+    if(af) af.hidden = selSub!=="alcohol";
+    if(df) df.hidden = selSub!=="drugs";
+  };
+  paintType(); paintSub();
+  document.querySelectorAll("[data-msub]").forEach(b=>b.addEventListener("click",()=>{
+    selSub = b.dataset.msub; paintSub();
+  }));
+  document.querySelectorAll("[data-mtype]").forEach(b=>b.addEventListener("click",()=>{
+    selType = b.dataset.mtype; paintType();
+    if(!priceTouched) $("#m-price").value = defaultDrinkPrice(selType).toFixed(2);
+  }));
+  $("#m-price").addEventListener("input",()=>{ priceTouched = true; });
+  $("#m-save").addEventListener("click",()=>{
+    if(selSub==="drugs"){
+      const sp = parseFloat($("#m-spend").value);
+      if(sp>0){
+        store.set("moneySubstance","drugs");
+        store.set("spendPerDay",sp.toFixed(2));
+        store.set("drugName",$("#m-drug").value.trim());
+        toast(t().saved); renderCounter();
+      }
+    } else {
+      const d = parseInt($("#m-drinks").value,10);
+      const p = parseFloat($("#m-price").value);
+      if(d>0 && p>0){
+        store.set("moneySubstance","alcohol");
+        store.set("drinksPerDay",d); store.set("alcoholType",selType);
+        store.set("pricePerDrink",p.toFixed(2));
+        toast(t().saved); renderCounter();
+      }
+    }
+  });
+  const eb = $("#money-edit");
+  if(eb) eb.addEventListener("click",()=>{ const w=$("#money-edit-wrap"); w.hidden=!w.hidden; });
+}
+
+/* ================= 12 STEPS ================= */
+function renderSteps(){
+  const done = store.get("stepsDone",[]);
+  $("#view").innerHTML = `
+    <section class="card">
+      <h2>${esc(t().stepsTitle)}</h2>
+      <p class="muted">${esc(t().stepsSubtitle)}</p>
+      <p style="margin-bottom:0"><strong style="color:var(--teal)">${done.length} / 12 ${esc(t().stepsCompleted)}</strong></p>
+    </section>
+    ${TWELVE_STEPS.map((st,i)=>`
+      <section class="card" style="margin:8px 0;padding:14px 18px">
+        <label style="display:flex;gap:12px;align-items:flex-start;cursor:pointer;min-height:44px">
+          <input type="checkbox" data-step="${i+1}" ${done.includes(i+1)?"checked":""}
+            style="width:26px;height:26px;flex:none;margin-top:2px;accent-color:var(--teal)"
+            aria-label="${lang==="es"?"Paso":"Step"} ${i+1}">
+          <span><strong style="color:var(--teal)">${lang==="es"?"Paso":"Step"} ${i+1}</strong><br>${esc(lang==="es"?st.es:st.en)}</span>
+        </label>
+      </section>`).join("")}`;
+  document.querySelectorAll("[data-step]").forEach(cb=>cb.addEventListener("change",()=>{
+    const n = +cb.dataset.step;
+    let d = store.get("stepsDone",[]);
+    d = cb.checked ? [...new Set([...d,n])] : d.filter(x=>x!==n);
+    store.set("stepsDone",d);
+    renderSteps();
+  }));
+}
+
+/* ================= SPONSORS ================= */
+function renderSponsors(){
+  const list = store.get("sponsors",[]);
+  $("#view").innerHTML = `
+    <section class="card" aria-label="${esc(t().sponsorsTitle)}">
+      <h2>${esc(t().sponsorsTitle)}</h2>
+      <p class="muted">${esc(t().sponsorsSubtitle)}</p>
+      <div id="sponsors-list">
+        ${list.length ? list.map((sp,i)=>`
+          <div class="row space-between" style="padding:10px 0;border-bottom:1px dashed var(--line)">
+            <a class="tel-link teal" href="${tel(sp.phone)}">📞 ${esc(sp.name)}</a>
+            <button class="btn btn-ghost btn-sm" data-del-sp="${i}" aria-label="${esc(t().remove)} ${esc(sp.name)}">✕</button>
+          </div>`).join("") : `<p class="muted small">${esc(t().noSponsors)}</p>`}
+      </div>
+      <div class="row mt">
+        <input type="text" id="sp-name" placeholder="${esc(t().contact_name_ph)}" aria-label="${esc(t().contact_name_ph)}" style="flex:2;min-width:140px">
+        <input type="tel" id="sp-phone" placeholder="${esc(t().contact_phone_ph)}" aria-label="${esc(t().contact_phone_ph)}" style="flex:2;min-width:140px">
+        <button class="btn btn-primary btn-sm" id="sp-add">${esc(t().add)}</button>
+      </div>
+    </section>`;
+  const refresh = ()=>{
+    const l = store.get("sponsors",[]);
+    $("#sponsors-list").innerHTML = l.length ? l.map((sp,i)=>`
+      <div class="row space-between" style="padding:10px 0;border-bottom:1px dashed var(--line)">
+        <a class="tel-link teal" href="${tel(sp.phone)}">📞 ${esc(sp.name)}</a>
+        <button class="btn btn-ghost btn-sm" data-del-sp="${i}" aria-label="${esc(t().remove)} ${esc(sp.name)}">✕</button>
+      </div>`).join("") : `<p class="muted small">${esc(t().noSponsors)}</p>`;
+    bindDel();
+  };
+  const bindDel = ()=>{
+    document.querySelectorAll("[data-del-sp]").forEach(b=>{
+      if(b.dataset.bound) return; b.dataset.bound="1";
+      b.addEventListener("click",()=>{
+        const l = store.get("sponsors",[]); l.splice(+b.dataset.delSp,1);
+        store.set("sponsors",l); refresh();
+      });
+    });
+  };
+  bindDel();
+  $("#sp-add").addEventListener("click",()=>{
+    const n=$("#sp-name").value.trim(), p=$("#sp-phone").value.trim();
+    if(!n||!p) return;
+    const l=store.get("sponsors",[]); l.push({name:n,phone:p}); store.set("sponsors",l);
+    $("#sp-name").value=""; $("#sp-phone").value="";
+    refresh(); toast(t().saved);
+  });
+}
+
+/* ================= init ================= */
+render();
+</script>
+</body>
+</html>
