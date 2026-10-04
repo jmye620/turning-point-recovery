@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Turning Point Recovery</string>
+    <style name="Theme.RecoverySupport" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:windowBackground">#F5F1E6</item>
+        <item name="android:statusBarColor">#F5F1E6</item>
+        <item name="android:navigationBarColor">#F5F1E6</item>
+    </style>
+</resources>
