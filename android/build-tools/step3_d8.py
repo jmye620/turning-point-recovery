@@ -3,8 +3,9 @@
 import os, subprocess, sys, glob, re
 
 SDK = os.path.expanduser("~/android-sdk")
+TARGET_SDK = os.environ.get("TARGET_SDK", "34")
 D8 = f"{SDK}/build-tools/34.0.0/d8"
-ANDROID_JAR = f"{SDK}/platforms/android-34/android.jar"
+ANDROID_JAR = f"{SDK}/platforms/android-{TARGET_SDK}/android.jar"
 WORK = "/tmp/build/work"
 AARS = "/tmp/build/aars"
 LIBS = "/tmp/deps/libs"

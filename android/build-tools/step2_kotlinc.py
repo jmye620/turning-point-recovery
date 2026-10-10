@@ -3,7 +3,8 @@
 import os, subprocess, sys, glob, re
 
 SDK = os.path.expanduser("~/android-sdk")
-ANDROID_JAR = f"{SDK}/platforms/android-34/android.jar"
+TARGET_SDK = os.environ.get("TARGET_SDK", "34")
+ANDROID_JAR = f"{SDK}/platforms/android-{TARGET_SDK}/android.jar"
 SRC = os.path.expanduser("~/workspace/recovery-app/app/src/main/java")
 WORK = "/tmp/build/work"
 AARS = "/tmp/build/aars"

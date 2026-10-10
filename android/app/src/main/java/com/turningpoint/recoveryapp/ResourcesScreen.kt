@@ -79,6 +79,73 @@ fun ResourcesScreen(store: Store, s: AppStrings, lang: String, goTo: (Tab) -> Un
         }
 
         Spacer(Modifier.height(18.dp))
+        SectionTitle(s.communityResources)
+
+        ToolCard("🧠", s.smartTitle, s.smartBody) {
+            val ctx = LocalContext.current
+            Spacer(Modifier.height(8.dp))
+            Text(s.smartPointsHeader, style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
+            Spacer(Modifier.height(6.dp))
+            listOf(s.smartPoint1, s.smartPoint2, s.smartPoint3, s.smartPoint4).forEachIndexed { i, point ->
+                Row(Modifier.padding(vertical = 5.dp), verticalAlignment = Alignment.CenterVertically) {
+                    Surface(shape = RoundedCornerShape(50), color = DeepTeal) {
+                        Text("${i + 1}", Modifier.padding(horizontal = 12.dp, vertical = 6.dp),
+                            color = CardWhite, fontWeight = FontWeight.Bold)
+                    }
+                    Spacer(Modifier.width(10.dp))
+                    Text(point, style = MaterialTheme.typography.bodyLarge)
+                }
+            }
+            Spacer(Modifier.height(8.dp))
+            Text(s.smartMeetingNote, style = MaterialTheme.typography.bodyMedium, color = WarmGray)
+            Spacer(Modifier.height(10.dp))
+            PillButton(s.smartSiteButton, primary = false, modifier = Modifier.fillMaxWidth(),
+                onClick = { openLink(ctx, SMART_URL) })
+        }
+        ToolCard("💼", s.employmentTitle, s.employmentBody) {
+            val ctx = LocalContext.current
+            Spacer(Modifier.height(8.dp))
+            PillButton(s.unemploymentButton, modifier = Modifier.fillMaxWidth(),
+                onClick = { openLink(ctx, UNEMPLOYMENT_URL) })
+            Spacer(Modifier.height(12.dp))
+            Text(s.employersHeader, style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
+            Spacer(Modifier.height(4.dp))
+            SECOND_CHANCE_EMPLOYERS.forEach { e ->
+                Column(Modifier.padding(vertical = 6.dp)) {
+                    Text(e.name, style = MaterialTheme.typography.titleMedium)
+                    Text(e.location, style = MaterialTheme.typography.bodyMedium, color = DeepTeal,
+                        fontWeight = FontWeight.SemiBold)
+                    Text(if (lang == "es") e.noteEs else e.noteEn,
+                        style = MaterialTheme.typography.bodyMedium, color = WarmGray)
+                }
+            }
+            Spacer(Modifier.height(4.dp))
+            Text(s.employersNote, style = MaterialTheme.typography.bodyMedium, color = WarmGray,
+                fontWeight = FontWeight.SemiBold)
+        }
+        ToolCard("🍽️", s.foodTitle, s.foodBody) {
+            val ctx = LocalContext.current
+            Spacer(Modifier.height(8.dp))
+            PillButton(s.snapButton, modifier = Modifier.fillMaxWidth(),
+                onClick = { openLink(ctx, KYNECT_URL) })
+            Spacer(Modifier.height(12.dp))
+            Text(s.kitchensHeader, style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
+            Spacer(Modifier.height(4.dp))
+            FOOD_KITCHENS.forEach { k ->
+                Column(Modifier.padding(vertical = 6.dp)) {
+                    Text(k.name, style = MaterialTheme.typography.titleMedium)
+                    Text(k.address, style = MaterialTheme.typography.bodyMedium, color = DeepTeal,
+                        fontWeight = FontWeight.SemiBold)
+                    Text(if (lang == "es") k.noteEs else k.noteEn,
+                        style = MaterialTheme.typography.bodyMedium, color = WarmGray)
+                }
+            }
+            Spacer(Modifier.height(4.dp))
+            Text(s.kitchensNote, style = MaterialTheme.typography.bodyMedium, color = WarmGray,
+                fontWeight = FontWeight.SemiBold)
+        }
+
+        Spacer(Modifier.height(18.dp))
         SectionTitle(s.freeServices)
         RecoveryCard {
             SERVICES.forEach { svc ->

@@ -129,3 +129,60 @@ fun defaultDrinkPrice(type: String): Float = when (type) {
     "liquor" -> 4.5f
     else -> 2.0f // beer
 }
+
+/** Community resource links (verified Oct 2026). */
+const val UNEMPLOYMENT_URL = "https://kcc.ky.gov"
+const val KYNECT_URL = "https://kynect.ky.gov"
+const val SMART_URL = "https://www.smartrecovery.org"
+
+/** Western Kentucky employers known for second-chance hiring. */
+data class Employer(val name: String, val location: String, val noteEn: String, val noteEs: String)
+
+val SECOND_CHANCE_EMPLOYERS = listOf(
+    Employer(
+        "Pella Corporation", "Murray, KY",
+        "Manufacturing: operators, maintenance technicians",
+        "Manufactura: operadores, técnicos de mantenimiento"),
+    Employer(
+        "People Plus, Inc.", "Paducah · Madisonville · Henderson · Greenville",
+        "Staffing: general labor, warehouse, CDL drivers",
+        "Agencia de empleo: trabajo general, almacén, conductores CDL"),
+    Employer(
+        "Goodwill Industries of Kentucky", "Western Kentucky",
+        "Second-chance employer with job training programs",
+        "Empleador de segunda oportunidad con programas de capacitación"),
+    Employer(
+        "SCH Services, LLC", "Calvert City, KY",
+        "Encourages applicants with a criminal record; skilled trades",
+        "Anima a postularse a personas con antecedentes penales; oficios calificados"),
+    Employer(
+        "Dairy Queen (Fourteen Foods)", "Princeton, KY",
+        "Restaurant team members and managers",
+        "Miembros de equipo y gerentes de restaurante"),
+)
+
+/** Western Kentucky food kitchens and pantries. */
+data class FoodKitchen(val name: String, val address: String, val noteEn: String, val noteEs: String)
+
+val FOOD_KITCHENS = listOf(
+    FoodKitchen(
+        "Community Kitchen", "1237 Martin Luther King Jr Dr, Paducah",
+        "Free lunch Mon–Fri, 11am–1pm",
+        "Almuerzo gratis lun–vie, 11am–1pm"),
+    FoodKitchen(
+        "Family Kitchen of Western Kentucky", "1001 S 4th St, Paducah",
+        "Free meal every Saturday, 11am–1pm",
+        "Comida gratis cada sábado, 11am–1pm"),
+    FoodKitchen(
+        "Paducah Cooperative Ministry", "402 Legion Dr, Paducah",
+        "Food pantry Mon–Fri · 270-442-6795",
+        "Despensa de alimentos lun–vie · 270-442-6795"),
+    FoodKitchen(
+        "Family Service Society", "1225 Broadway, Paducah",
+        "Food distribution Mon–Fri · 270-443-4838",
+        "Distribución de alimentos lun–vie · 270-443-4838"),
+    FoodKitchen(
+        "St. Vincent de Paul", "2001 Cairo Rd, Paducah",
+        "Tue–Thu 10am–1pm · 270-575-1008",
+        "Mar–jue 10am–1pm · 270-575-1008"),
+)

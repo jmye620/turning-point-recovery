@@ -104,6 +104,14 @@ fun textTo(ctx: Context, digits: String) {
     }
 }
 
+fun openLink(ctx: Context, url: String) {
+    runCatching {
+        ctx.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)).apply {
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        })
+    }
+}
+
 fun toast(ctx: Context, msg: String) = Toast.makeText(ctx, msg, Toast.LENGTH_SHORT).show()
 
 @Composable

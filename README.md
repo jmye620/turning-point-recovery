@@ -85,8 +85,34 @@ changing it forces users to uninstall (which wipes the app's local data).
 The debug keystore is intentionally **not** committed to this repo. If you
 publish this repo publicly, never commit a release keystore or Play upload key.
 
+### Play Store release (.aab)
+
+A release-signed **Android App Bundle** is built with the manual pipeline plus
+`android/build-tools/step5_bundle.py`:
+
+```
+TARGET_SDK=35 BUNDLE_PROTO=1 step1_res.py → step1b_r.py → step2_kotlinc.py →
+javac (R.java) → step3_d8.py → step5_bundle.py
+```
+
+- `TARGET_SDK` / `BUNDLE_PROTO` are optional env vars (default `34` / unset,
+  which keeps the regular debug-APK pipeline unchanged).
+- `step5_bundle.py` signs with `release.keystore` (upload key, kept next to
+  the debug keystore — never commit it) and needs `bundletool.jar` in
+  `android/build-tools/` ([download](https://github.com/google/bundletool/releases)).
+- The bundle targets SDK 35 (Play's current minimum for new apps) with min SDK
+  26 unchanged.
+
+Upload the `.aab` to a **closed testing** track in Play Console for a private
+beta; enroll in Play App Signing on first upload using the upload certificate.
+
 ## Version history
 
+- 1.1.8 — new "Community resources" section on the Resources tab: SMART
+  Recovery (4-Point Program, Thursday 12pm center meeting note, smartrecovery.org),
+  Employment (kcc.ky.gov unemployment + 5 Western KY second-chance employers),
+  Food (kynect.ky.gov SNAP/Medicaid + 5 Paducah-area kitchens/pantries); new
+  Turning Point launcher icon
 - 1.1.7 — 12 Steps reworded for all addictions (not just alcohol); money-saved
   tracker gains a drug-of-choice option (drug + average spent/day)
 - 1.1.6 — money-saved tracker on the Counter tab; new Steps tab (12-step

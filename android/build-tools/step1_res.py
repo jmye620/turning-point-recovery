@@ -4,11 +4,15 @@ import os, re, shutil, subprocess, sys, glob
 
 APP_ID = "com.turningpoint.recoveryapp"
 SDK = os.path.expanduser("~/android-sdk")
+TARGET_SDK = os.environ.get("TARGET_SDK", "34")
 AAPT2 = f"{SDK}/build-tools/34.0.0/aapt2"
-ANDROID_JAR = f"{SDK}/platforms/android-34/android.jar"
+ANDROID_JAR = f"{SDK}/platforms/android-{TARGET_SDK}/android.jar"
 SRC = os.path.expanduser("~/workspace/recovery-app/app/src/main")
 WORK = "/tmp/build/work"
 AARS = "/tmp/build/aars"
+# When BUNDLE_PROTO=1, link resources in protobuf format into a bundle module
+# zip (for bundletool) instead of an APK.
+BUNDLE_PROTO = os.environ.get("BUNDLE_PROTO") == "1"
 
 shutil.rmtree(WORK, ignore_errors=True)
 os.makedirs(f"{WORK}/compiled", exist_ok=True)
@@ -92,17 +96,19 @@ for name, rd in res_dirs:
 print("aapt2 compile OK")
 
 # ---- 3. aapt2 link ----
-apk_unaligned = f"{WORK}/app-unaligned.apk"
+link_out = f"{WORK}/base-module.zip" if BUNDLE_PROTO else f"{WORK}/app-unaligned.apk"
 assets = [d for d in glob.glob(f"{AARS}/*/assets") if any(os.scandir(d))]
-cmd = [AAPT2, "link", "-o", apk_unaligned,
+cmd = [AAPT2, "link", "-o", link_out,
        "-I", ANDROID_JAR,
        "--manifest", f"{WORK}/AndroidManifest.xml",
        "--java", f"{WORK}/gen",
        "--output-text-symbols", f"{WORK}/symbols.txt",
        "--min-sdk-version", "26",
-       "--target-sdk-version", "34",
-       "--version-code", "9",
-       "--version-name", "1.1.7"]
+       "--target-sdk-version", TARGET_SDK,
+       "--version-code", "10",
+       "--version-name", "1.1.8"]
+if BUNDLE_PROTO:
+    cmd.append("--proto-format")
 for a in assets:
     cmd += ["-A", a]
 cmd += compiled
