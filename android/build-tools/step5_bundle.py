@@ -6,7 +6,7 @@ Expects BUNDLE_PROTO=1 + TARGET_SDK=35 pipeline output:
   /tmp/build/work/dex/*.dex        (from step3_d8)
 
 Produces a release-signed AAB:
-  ~/workspace/recovery-app/turning-point-recovery-1.1.8.aab
+  ~/workspace/recovery-app/turning-point-recovery-1.1.9.aab
 """
 import glob
 import os
@@ -22,7 +22,7 @@ JARSIGNER = os.path.expanduser("~/jdk/bin/jarsigner")
 BUNDLETOOL = f"{APP_DIR}/build-tools/bundletool.jar"
 KEYSTORE = f"{APP_DIR}/release.keystore"
 PWFILE = f"{APP_DIR}/release-keystore.pw"
-AAB = f"{APP_DIR}/turning-point-recovery-1.1.8.aab"
+AAB = f"{APP_DIR}/turning-point-recovery-1.1.9.aab"
 
 
 def run(cmd, **kw):

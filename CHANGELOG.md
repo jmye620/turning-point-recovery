@@ -2,6 +2,9 @@
 
 Package: `com.turningpoint.recoveryapp` · Min SDK 26 (Android 8.0) · armv8 32/64-bit
 
+## 1.1.9 — 2026-10-10 (versionCode 11)
+- App launcher icon reverted to the previous sunrise vector icon (teal background)
+
 ## 1.1.8 — 2026-10-10 (versionCode 10)
 - New **Community resources** section on the Resources tab, three expandable cards:
   - **SMART Recovery** — the 4-Point Program, note about the Thursday 12:00 PM meeting at the center, link to smartrecovery.org
