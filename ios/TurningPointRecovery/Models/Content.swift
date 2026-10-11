@@ -7,6 +7,10 @@ let CENTER_PHONE_PRETTY = "270.444.3621"
 let CRISIS_LINE_PRETTY = "800.592.3980"
 let WEBSITE = "https://4rbh.org"
 
+// Free recovery literature (official sites, verified Oct 2026).
+let AA_BIG_BOOK_URL = "https://www.aa.org/the-big-book"
+let NA_LITERATURE_URL = "https://www.na.org/"
+
 struct CheckIn: Codable {
     let date: String      // "yyyy-MM-dd"
     let mood: Int         // 0..4
@@ -106,6 +110,48 @@ let MILESTONES: [Milestone] = [
     Milestone(days: 1095, labelEn: "3 years", labelEs: "3 años"),
     Milestone(days: 1460, labelEn: "4 years", labelEs: "4 años"),
     Milestone(days: 1825, labelEn: "5 years", labelEs: "5 años"),
+]
+
+struct TwelveStep { let en: String; let es: String }
+
+/// The 12 Steps, worded for all addictions (not just alcohol).
+let TWELVE_STEPS: [TwelveStep] = [
+    TwelveStep(
+        en: "We admitted we were powerless over our addiction — that our lives had become unmanageable.",
+        es: "Admitimos que éramos impotentes ante nuestra adicción, que nuestras vidas se habían vuelto ingobernables."),
+    TwelveStep(
+        en: "Came to believe that a Power greater than ourselves could restore us to sanity.",
+        es: "Llegamos a creer que un Poder superior a nosotros mismos podría devolvernos el sano juicio."),
+    TwelveStep(
+        en: "Made a decision to turn our will and our lives over to the care of God as we understood Him.",
+        es: "Decidimos poner nuestras voluntades y nuestras vidas al cuidado de Dios, como nosotros lo concebimos."),
+    TwelveStep(
+        en: "Made a searching and fearless moral inventory of ourselves.",
+        es: "Sin miedo hicimos un minucioso inventario moral de nosotros mismos."),
+    TwelveStep(
+        en: "Admitted to God, to ourselves, and to another human being the exact nature of our wrongs.",
+        es: "Admitimos ante Dios, ante nosotros mismos, y ante otro ser humano, la naturaleza exacta de nuestros defectos."),
+    TwelveStep(
+        en: "Were entirely ready to have God remove all these defects of character.",
+        es: "Estuvimos enteramente dispuestos a dejar que Dios nos liberase de nuestros defectos."),
+    TwelveStep(
+        en: "Humbly asked Him to remove our shortcomings.",
+        es: "Humildemente le pedimos que nos liberase de nuestros defectos."),
+    TwelveStep(
+        en: "Made a list of all persons we had harmed, and became willing to make amends to them all.",
+        es: "Hicimos una lista de todas aquellas personas a quienes habíamos ofendido y estuvimos dispuestos a reparar el daño que les causamos."),
+    TwelveStep(
+        en: "Made direct amends to such people wherever possible, except when to do so would injure them or others.",
+        es: "Reparamos directamente a cuantos nos fue posible el daño causado, excepto cuando el hacerlo implicaba perjuicio para ellos o para otros."),
+    TwelveStep(
+        en: "Continued to take personal inventory and when we were wrong promptly admitted it.",
+        es: "Continuamos haciendo nuestro inventario personal y cuando nos equivocábamos lo admitíamos inmediatamente."),
+    TwelveStep(
+        en: "Sought through prayer and meditation to improve our conscious contact with God as we understood Him, praying only for knowledge of His will for us and the power to carry that out.",
+        es: "Buscamos a través de la oración y la meditación mejorar nuestro contacto consciente con Dios, como nosotros lo concebimos, pidiéndole solamente que nos dejase conocer su voluntad para con nosotros y nos diese la fortaleza para cumplirla."),
+    TwelveStep(
+        en: "Having had a spiritual awakening as the result of these steps, we tried to carry this message to addicts, and to practice these principles in all our affairs.",
+        es: "Habiendo obtenido un despertar espiritual como resultado de estos pasos, tratamos de llevar este mensaje a otros adictos y de practicar estos principios en todos nuestros asuntos."),
 ]
 
 // MARK: - Date helpers

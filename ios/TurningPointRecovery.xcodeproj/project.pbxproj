@@ -22,6 +22,9 @@
 		EB3A63170D0D3EDCF046643A = {isa = PBXBuildFile; fileRef = EB234A99D04D005071B991D2; };
 		58F5105B3465DB494841CEEA = {isa = PBXBuildFile; fileRef = 8625ED0374D758D13629F304; };
 		F231AB589B70ACA4F1C5D809 = {isa = PBXBuildFile; fileRef = A790BB479B2477E3A634A1EB; };
+		0ED6A8EEF4D7C44CB639DA45 = {isa = PBXBuildFile; fileRef = 33D5BFC99D1002CC78F65F57; };
+		25FF587BF4DB06D54CDDE0DC = {isa = PBXBuildFile; fileRef = D7FF0524D3D8DE243140A0E9; };
+		8F29C4B992A6F4678DEB4939 = {isa = PBXBuildFile; fileRef = 178203451A50A90EE8E37B3B; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +45,9 @@
 		B15A13ACECE86FF5B996CE6C = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A790BB479B2477E3A634A1EB = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		84337AD8D27FCD69AF2C4FC2 = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TurningPointRecovery.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		33D5BFC99D1002CC78F65F57 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepsView.swift; sourceTree = "<group>"; };
+		D7FF0524D3D8DE243140A0E9 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SponsorsView.swift; sourceTree = "<group>"; };
+		178203451A50A90EE8E37B3B = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiteratureReader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +104,9 @@
 				BDDC62FCB5B12C582D9D4714,
 				EB234A99D04D005071B991D2,
 				8625ED0374D758D13629F304,
+				D7FF0524D3D8DE243140A0E9,
+				33D5BFC99D1002CC78F65F57,
+				178203451A50A90EE8E37B3B,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -182,6 +191,9 @@
 			03FEA769AD4F14F5CF568FEF,
 			EB3A63170D0D3EDCF046643A,
 			58F5105B3465DB494841CEEA,
+			25FF587BF4DB06D54CDDE0DC,
+			0ED6A8EEF4D7C44CB639DA45,
+			8F29C4B992A6F4678DEB4939,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

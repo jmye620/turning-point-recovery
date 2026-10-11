@@ -63,6 +63,9 @@ struct CounterView: View {
                 PillButton(s.shareCleanTime) { shareCleanTime = true }
                     .padding(.top, 14)
 
+                MoneyCard(store: store, s: s, days: days)
+                    .padding(.top, 14)
+
                 LazyVGrid(columns: [GridItem(.flexible(), spacing: 10), GridItem(.flexible(), spacing: 10), GridItem(.flexible(), spacing: 10)], spacing: 10) {
                     ForEach(MILESTONES, id: \.days) { m in
                         let isEarned = days >= m.days
@@ -356,4 +359,165 @@ private struct ActivityView: UIViewControllerRepresentable {
         UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
     }
     func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {}
+}
+
+// MARK: - Money saved
+
+private func usd(_ n: Double) -> String {
+    let f = NumberFormatter()
+    f.numberStyle = .currency
+    f.currencyCode = "USD"
+    f.locale = Locale(identifier: "en_US")
+    return f.string(from: NSNumber(value: n)) ?? String(format: "$%.2f", n)
+}
+
+/// Money-saved tracker card on the Counter tab. Supports an alcohol path
+/// (drinks/day x price per drink) and a drugs path (drug of choice +
+/// average spent per day) so people on narcotics can use it too.
+private struct MoneyCard: View {
+    @ObservedObject var store: Store
+    let s: AppStrings
+    let days: Int
+    @State private var setupOpen = false
+
+    var body: some View {
+        RecoveryCard {
+            VStack(alignment: .leading, spacing: 8) {
+                Text("💰 \(s.moneyTitle)").font(.title2).fontWeight(.bold).foregroundColor(.ink)
+                if store.moneyConfigured() {
+                    Text(usd(store.moneySaved(days: days)))
+                        .font(.displaySmall).foregroundColor(.deepTeal)
+                    Text(moneyDetail()).font(.body).foregroundColor(.warmGray)
+                    PillButton(s.moneyEdit, primary: false) { setupOpen = true }
+                        .padding(.top, 4)
+                } else {
+                    Text(s.moneyNotSet).font(.body).foregroundColor(.warmGray)
+                    PillButton(s.moneySetup, primary: false) { setupOpen = true }
+                        .padding(.top, 4)
+                }
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+        }
+        .sheet(isPresented: $setupOpen) {
+            MoneySetupSheet(store: store, s: s)
+        }
+    }
+
+    private func moneyDetail() -> String {
+        if store.alcoholType == "drugs" {
+            let name = store.drugName.trimmingCharacters(in: .whitespaces)
+            let perDay = "\(usd(store.spendPerDay)) \(s.moneyPerDay)"
+            return name.isEmpty ? perDay : "\(name) · \(perDay)"
+        } else {
+            let typeLabel: String
+            switch store.alcoholType {
+            case "wine": typeLabel = s.moneyWine
+            case "liquor": typeLabel = s.moneyLiquor
+            default: typeLabel = s.moneyBeer
+            }
+            return "\(store.drinksPerDay) \(s.moneyDrinksDay) · \(typeLabel) · \(usd(store.pricePerDrink)) \(s.moneyEach)"
+        }
+    }
+}
+
+private struct MoneySetupSheet: View {
+    @ObservedObject var store: Store
+    let s: AppStrings
+    @Environment(\.dismiss) private var dismiss
+
+    @State private var substance = "alcohol"
+    @State private var drinksText = ""
+    @State private var type = "beer"
+    @State private var priceText = ""
+    @State private var priceTouched = false
+    @State private var drugNameText = ""
+    @State private var spendText = ""
+
+    var body: some View {
+        NavigationView {
+            ScrollView {
+                VStack(alignment: .leading, spacing: 12) {
+                    Text(s.moneySubstance).font(.headline).foregroundColor(.ink)
+                    Picker(s.moneySubstance, selection: $substance) {
+                        Text(s.moneyAlcohol).tag("alcohol")
+                        Text(s.moneyDrugs).tag("drugs")
+                    }
+                    .pickerStyle(.segmented)
+
+                    if substance == "alcohol" {
+                        Text(s.moneyDrinksPerDay).font(.headline).foregroundColor(.ink)
+                        TextField("", text: $drinksText)
+                            .keyboardType(.numberPad)
+                            .textFieldStyle(.roundedBorder)
+                        Text(s.moneyAlcoholType).font(.headline).foregroundColor(.ink)
+                        Picker(s.moneyAlcoholType, selection: $type) {
+                            Text(s.moneyBeer).tag("beer")
+                            Text(s.moneyWine).tag("wine")
+                            Text(s.moneyLiquor).tag("liquor")
+                        }
+                        .pickerStyle(.segmented)
+                        .onChange(of: type) { _, newType in
+                            if !priceTouched { priceText = defaultPrice(newType) }
+                        }
+                        Text(s.moneyPricePerDrink).font(.headline).foregroundColor(.ink)
+                        TextField("", text: $priceText)
+                            .keyboardType(.decimalPad)
+                            .textFieldStyle(.roundedBorder)
+                            .onChange(of: priceText) { _, _ in priceTouched = true }
+                    } else {
+                        Text(s.moneyDrugOfChoice).font(.headline).foregroundColor(.ink)
+                        TextField("", text: $drugNameText)
+                            .textFieldStyle(.roundedBorder)
+                        Text(s.moneySpentPerDay).font(.headline).foregroundColor(.ink)
+                        TextField("", text: $spendText)
+                            .keyboardType(.decimalPad)
+                            .textFieldStyle(.roundedBorder)
+                    }
+
+                    PillButton(s.moneySave) { save() }
+                        .padding(.top, 8)
+                }
+                .padding()
+            }
+            .navigationTitle(s.moneyTitle)
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button(s.cancel) { dismiss() }
+                }
+            }
+        }
+        .onAppear {
+            substance = store.alcoholType == "drugs" ? "drugs" : "alcohol"
+            drinksText = store.drinksPerDay > 0 ? "\(store.drinksPerDay)" : ""
+            type = store.alcoholType == "drugs" ? "beer" : store.alcoholType
+            priceText = String(format: "%.2f", store.pricePerDrink)
+            drugNameText = store.drugName
+            spendText = store.spendPerDay > 0 ? String(format: "%.2f", store.spendPerDay) : ""
+        }
+    }
+
+    private func defaultPrice(_ t: String) -> String {
+        switch t {
+        case "wine": return "3.50"
+        case "liquor": return "4.50"
+        default: return "2.00"
+        }
+    }
+
+    private func save() {
+        if substance == "drugs" {
+            if let sp = Double(spendText), sp > 0 {
+                store.alcoholType = "drugs"
+                store.spendPerDay = sp
+                store.drugName = drugNameText.trimmingCharacters(in: .whitespaces)
+                dismiss()
+            }
+        } else if let d = Int(drinksText), d > 0, let p = Double(priceText), p > 0 {
+            store.alcoholType = type
+            store.drinksPerDay = d
+            store.pricePerDrink = p
+            dismiss()
+        }
+    }
 }

@@ -5,6 +5,15 @@ struct ResourcesView: View {
     let s: AppStrings
     let lang: String
     let goTo: (AppTab) -> Void
+    @State private var readerURL: URL? = nil
+    @State private var readerOpen = false
+
+    private func openReader(_ urlString: String) {
+        if let url = URL(string: urlString) {
+            readerURL = url
+            readerOpen = true
+        }
+    }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -38,6 +47,18 @@ struct ResourcesView: View {
             ToolCard(emoji: "✍️", title: s.writeItOut, body: s.writeItOutBody) {
                 WriteItOutTool(s: s)
             }
+
+            SectionTitle(text: s.literatureTitle).padding(.top, 18)
+            Text(s.literatureSubtitle).font(.body).foregroundColor(.warmGray)
+            ToolCard(emoji: "📖", title: s.aaBookTitle, body: s.aaBookBody) {
+                PillButton(s.readNow) { openReader(AA_BIG_BOOK_URL) }
+                    .padding(.top, 8)
+            }
+            ToolCard(emoji: "📖", title: s.naBookTitle, body: s.naBookBody) {
+                PillButton(s.readNow) { openReader(NA_LITERATURE_URL) }
+                    .padding(.top, 8)
+            }
+            Text(s.literatureNote).font(.subheadline).foregroundColor(.warmGray)
 
             SectionTitle(text: s.freeServices).padding(.top, 18)
             RecoveryCard {
@@ -89,6 +110,11 @@ struct ResourcesView: View {
             }
 
             Footer(store: store, s: s) { goTo(.resources) }
+        }
+        .sheet(isPresented: $readerOpen) {
+            if let url = readerURL {
+                LiteratureReader(url: url)
+            }
         }
     }
 }

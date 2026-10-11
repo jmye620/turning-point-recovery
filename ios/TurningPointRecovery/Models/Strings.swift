@@ -7,6 +7,7 @@ struct AppStrings {
     // Tabs
     let tabToday: String, tabCheckIn: String, tabCounter: String
     let tabMeetings: String, tabResources: String, tabEvents: String
+    let tabSteps: String, tabSponsors: String
     // Header / global
     let appName: String, getHelp: String, language: String
     let crisisTitle: String, crisisSubtitle: String
@@ -58,6 +59,18 @@ struct AppStrings {
     let chipNote: String, milestoneTzNote: String
     let shareCardTitle: String, shareCardSubtitle: String, shareCardTag: String
     let year: String, years: String, month: String, months: String, day: String, days: String
+    // Money saved
+    let moneyTitle: String, moneyNotSet: String, moneySetup: String
+    let moneyDrinksPerDay: String, moneyAlcoholType: String
+    let moneyBeer: String, moneyWine: String, moneyLiquor: String
+    let moneyPricePerDrink: String, moneySave: String, moneyEdit: String
+    let moneyDrinksDay: String, moneyEach: String
+    let moneySubstance: String, moneyAlcohol: String, moneyDrugs: String
+    let moneyDrugOfChoice: String, moneySpentPerDay: String, moneyPerDay: String
+    // 12 Steps
+    let stepsTitle: String, stepsSubtitle: String, stepsCompleted: String, stepWord: String
+    // Sponsors
+    let sponsorsTitle: String, sponsorsSubtitle: String, noSponsors: String
     // Meetings
     let meetingsTitle: String, meetingsSub: String, freeNoSignup: String
     let centerPhoneLabel: String
@@ -82,6 +95,10 @@ struct AppStrings {
     let urgeNeedSomeone: String
     let callSomeoneTitle: String, callSomeoneBody: String, callTurningPoint: String
     let writeItOut: String, writeItOutBody: String, writeHint: String, clearPage: String
+    let literatureTitle: String, literatureSubtitle: String, literatureNote: String
+    let aaBookTitle: String, aaBookBody: String
+    let naBookTitle: String, naBookBody: String
+    let readNow: String
     let freeServices: String, freeServicesNote: String
     let podcastTitle: String, podcastBody: String
     let visitCenter: String, visitAddress: String, visitEnter: String
@@ -94,6 +111,7 @@ struct AppStrings {
 let en = AppStrings(
     tabToday: "Today", tabCheckIn: "Check-in", tabCounter: "Counter",
     tabMeetings: "Meetings", tabResources: "Resources", tabEvents: "Events",
+    tabSteps: "Steps", tabSponsors: "Sponsors",
     appName: "Turning Point", getHelp: "Get help", language: "ES",
     crisisTitle: "Crisis help", crisisSubtitle: "You don't have to face this moment alone. Reach out — right now.",
     crisisCallNow: "I need support right now", crisisCallLine: "Call the 24-hour line",
@@ -147,6 +165,18 @@ let en = AppStrings(
     shareCardTitle: "Congratulations!", shareCardSubtitle: "One day at a time.",
     shareCardTag: "TURNING POINT RECOVERY · PADUCAH, KY",
     year: "year", years: "years", month: "month", months: "months", day: "day", days: "days",
+    moneyTitle: "Money saved", moneyNotSet: "See how much money your sobriety is saving you.",
+    moneySetup: "Set up", moneyDrinksPerDay: "Drinks per day (before)", moneyAlcoholType: "Drink of choice",
+    moneyBeer: "Beer", moneyWine: "Wine", moneyLiquor: "Liquor",
+    moneyPricePerDrink: "Average price per drink (USD)", moneySave: "Save", moneyEdit: "Edit",
+    moneyDrinksDay: "drinks/day", moneyEach: "each",
+    moneySubstance: "Substance", moneyAlcohol: "Alcohol", moneyDrugs: "Drugs",
+    moneyDrugOfChoice: "Drug of choice", moneySpentPerDay: "Average spent per day (USD)",
+    moneyPerDay: "per day",
+    stepsTitle: "The 12 Steps", stepsSubtitle: "Check off each step as you complete it. Your progress is saved on this phone.",
+    stepsCompleted: "completed", stepWord: "Step",
+    sponsorsTitle: "My sponsors", sponsorsSubtitle: "Tap a name to call your sponsor.",
+    noSponsors: "No sponsors yet — add your first one below.",
     meetingsTitle: "Meetings this week", meetingsSub: "All at the Paducah center · 415 Broadway",
     freeNoSignup: "Free, no sign-up.", todayBadge: "Today", addToCalendar: "Add to calendar",
     centerPhoneLabel: "Community Center · 270.444.3621",
@@ -176,6 +206,13 @@ let en = AppStrings(
     callTurningPoint: "Call Turning Point",
     writeItOut: "Write it out", writeItOutBody: "Get it out of your head and onto the page. No one's reading this — it vanishes when you leave.",
     writeHint: "Write it out…", clearPage: "Clear the page",
+    literatureTitle: "Literature", literatureSubtitle: "Free recovery books — read them online.",
+    literatureNote: "Books open from their official free websites and need an internet connection.",
+    aaBookTitle: "Alcoholics Anonymous — Big Book",
+    aaBookBody: "The foundational text of A.A. Read the full book free on the official A.A. website.",
+    naBookTitle: "Narcotics Anonymous — Basic Text",
+    naBookBody: "The foundational text of N.A. Find free official N.A. literature on na.org.",
+    readNow: "Read now",
     freeServices: "Free services at Turning Point", freeServicesNote: "Everything listed here is offered at no cost to the community.",
     podcastTitle: "Crosstalk Recovery Podcast", podcastBody: "Stories and conversations from the recovery community. Ask at the front desk or call 270.444.3621 to listen.",
     visitCenter: "Visit the center", visitAddress: "415 Broadway, Paducah, KY 42001",
@@ -190,6 +227,7 @@ let en = AppStrings(
 let es = AppStrings(
     tabToday: "Hoy", tabCheckIn: "Registro", tabCounter: "Contador",
     tabMeetings: "Reuniones", tabResources: "Recursos", tabEvents: "Eventos",
+    tabSteps: "Pasos", tabSponsors: "Padrinos",
     appName: "Turning Point", getHelp: "Ayuda", language: "EN",
     crisisTitle: "Ayuda en crisis", crisisSubtitle: "No tienes que enfrentar este momento a solas. Comunícate — ahora mismo.",
     crisisCallNow: "Necesito apoyo ahora mismo", crisisCallLine: "Llama a la línea 24 horas",
@@ -243,6 +281,18 @@ let es = AppStrings(
     shareCardTitle: "¡Felicidades!", shareCardSubtitle: "Un día a la vez.",
     shareCardTag: "TURNING POINT RECOVERY · PADUCAH, KY",
     year: "año", years: "años", month: "mes", months: "meses", day: "día", days: "días",
+    moneyTitle: "Dinero ahorrado", moneyNotSet: "Descubre cuánto dinero te está ahorrando tu sobriedad.",
+    moneySetup: "Configurar", moneyDrinksPerDay: "Tragos por día (antes)", moneyAlcoholType: "Bebida preferida",
+    moneyBeer: "Cerveza", moneyWine: "Vino", moneyLiquor: "Licor",
+    moneyPricePerDrink: "Precio promedio por trago (USD)", moneySave: "Guardar", moneyEdit: "Editar",
+    moneyDrinksDay: "tragos/día", moneyEach: "c/u",
+    moneySubstance: "Sustancia", moneyAlcohol: "Alcohol", moneyDrugs: "Drogas",
+    moneyDrugOfChoice: "Droga preferida", moneySpentPerDay: "Gasto promedio por día (USD)",
+    moneyPerDay: "por día",
+    stepsTitle: "Los 12 Pasos", stepsSubtitle: "Marca cada paso a medida que lo completes. Tu progreso se guarda en este teléfono.",
+    stepsCompleted: "completados", stepWord: "Paso",
+    sponsorsTitle: "Mis padrinos", sponsorsSubtitle: "Toca un nombre para llamar a tu padrino.",
+    noSponsors: "Aún no hay padrinos — agrega el primero abajo.",
     meetingsTitle: "Reuniones de esta semana", meetingsSub: "Todas en el centro de Paducah · 415 Broadway",
     freeNoSignup: "Gratis, sin inscripción.", todayBadge: "Hoy", addToCalendar: "Agregar al calendario",
     centerPhoneLabel: "Centro comunitario · 270.444.3621",
@@ -272,6 +322,13 @@ let es = AppStrings(
     callTurningPoint: "Llama a Turning Point",
     writeItOut: "Escríbelo", writeItOutBody: "Sácalo de tu cabeza y ponlo en la página. Nadie lo está leyendo — desaparece cuando te vas.",
     writeHint: "Escríbelo…", clearPage: "Borrar la página",
+    literatureTitle: "Literatura", literatureSubtitle: "Libros de recuperación gratuitos — léelos en línea.",
+    literatureNote: "Los libros se abren desde sus sitios oficiales gratuitos y necesitan conexión a internet.",
+    aaBookTitle: "Alcohólicos Anónimos — Libro Grande",
+    aaBookBody: "El texto fundamental de A.A. Lee el libro completo gratis en el sitio oficial de A.A.",
+    naBookTitle: "Narcóticos Anónimos — Texto Básico",
+    naBookBody: "El texto fundamental de N.A. Encuentra literatura oficial gratuita de N.A. en na.org.",
+    readNow: "Leer ahora",
     freeServices: "Servicios gratuitos en Turning Point", freeServicesNote: "Todo lo aquí listado se ofrece sin costo a la comunidad.",
     podcastTitle: "Pódcast Crosstalk Recovery", podcastBody: "Historias y conversaciones de la comunidad de recuperación. Pregunta en recepción o llama al 270.444.3621 para escuchar.",
     visitCenter: "Visita el centro", visitAddress: "415 Broadway, Paducah, KY 42001",

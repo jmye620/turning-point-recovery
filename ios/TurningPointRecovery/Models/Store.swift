@@ -119,6 +119,84 @@ final class Store: ObservableObject {
         objectWillChange.send()
     }
 
+    // MARK: - Money saved
+
+    var drinksPerDay: Int {
+        get { defaults.integer(forKey: "drinks_per_day") }
+        set { defaults.set(newValue, forKey: "drinks_per_day"); objectWillChange.send() }
+    }
+
+    /// "beer" | "wine" | "liquor" | "drugs"
+    var alcoholType: String {
+        get { defaults.string(forKey: "alcohol_type") ?? "beer" }
+        set { defaults.set(newValue, forKey: "alcohol_type"); objectWillChange.send() }
+    }
+
+    var pricePerDrink: Double {
+        get { defaults.object(forKey: "price_per_drink") == nil ? 2.0 : defaults.double(forKey: "price_per_drink") }
+        set { defaults.set(newValue, forKey: "price_per_drink"); objectWillChange.send() }
+    }
+
+    var spendPerDay: Double {
+        get { defaults.double(forKey: "spend_per_day") }
+        set { defaults.set(newValue, forKey: "spend_per_day"); objectWillChange.send() }
+    }
+
+    var drugName: String {
+        get { defaults.string(forKey: "drug_name") ?? "" }
+        set { defaults.set(newValue, forKey: "drug_name"); objectWillChange.send() }
+    }
+
+    func moneyConfigured() -> Bool {
+        alcoholType == "drugs" ? spendPerDay > 0 : drinksPerDay > 0
+    }
+
+    func moneySaved(days: Int) -> Double {
+        alcoholType == "drugs"
+            ? Double(days) * spendPerDay
+            : Double(days) * Double(drinksPerDay) * pricePerDrink
+    }
+
+    // MARK: - 12 Steps progress (step numbers 1...12)
+
+    func stepsDone() -> Set<Int> {
+        Set((defaults.stringArray(forKey: "steps_done") ?? []).compactMap(Int.init).filter { 1...12 ~= $0 })
+    }
+
+    func toggleStep(_ n: Int) {
+        var cur = stepsDone()
+        if cur.contains(n) { cur.remove(n) } else { cur.insert(n) }
+        defaults.set(cur.map(String.init), forKey: "steps_done")
+        objectWillChange.send()
+    }
+
+    // MARK: - Sponsors
+
+    func sponsors() -> [SupportContact] {
+        let raw = defaults.string(forKey: "sponsors") ?? ""
+        guard !raw.isEmpty else { return [] }
+        return raw.components(separatedBy: ";;").compactMap {
+            let p = $0.components(separatedBy: "||")
+            guard p.count == 2, !p[0].isEmpty else { return nil }
+            return SupportContact(name: p[0], phone: p[1])
+        }
+    }
+
+    func addSponsor(name: String, phone: String) {
+        var list = sponsors()
+        list.append(SupportContact(name: name, phone: phone))
+        persistSponsors(list)
+    }
+
+    func removeSponsor(_ c: SupportContact) {
+        persistSponsors(sponsors().filter { $0 != c })
+    }
+
+    private func persistSponsors(_ list: [SupportContact]) {
+        defaults.set(list.map { "\($0.name)||\($0.phone)" }.joined(separator: ";;"), forKey: "sponsors")
+        objectWillChange.send()
+    }
+
     // MARK: - Quotes
 
     func quoteIndex() -> Int { defaults.integer(forKey: "quote_idx") }
