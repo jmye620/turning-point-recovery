@@ -302,6 +302,11 @@ en: {
   food_title:"Food", food_desc:"Free meals and groceries in Western Kentucky, plus how to apply for food and health benefits.",
   food_snap:"Apply for SNAP & Medicaid (kynect.ky.gov)", food_header:"Food kitchens & pantries",
   food_note:"Call ahead \u2014 hours can change.",
+  lit_title:"Literature", lit_sub:"Free recovery books \u2014 read them online.",
+  lit_aa_title:"Alcoholics Anonymous \u2014 Big Book", lit_aa_desc:"The foundational text of A.A. Read the full book free on the official A.A. website.",
+  lit_na_title:"Narcotics Anonymous \u2014 Basic Text", lit_na_desc:"The foundational text of N.A. Find free official N.A. literature on na.org.",
+  lit_read:"Read now",
+  lit_note:"Books open from their official free websites.",
   services:["Peer support","Recovery meetings","Wi-Fi, computer & phone access","Snacks, coffee & water"],
   podcast_title:"Crosstalk Recovery Podcast", podcast_desc:"Real people, real stories, real recovery.",
   visit_title:"Visit the center", visit_addr:"415 Broadway, Paducah, KY 42001",
@@ -403,6 +408,11 @@ es: {
   food_title:"Comida", food_desc:"Comidas y despensas gratuitas en el oeste de Kentucky, y c\u00f3mo solicitar beneficios de alimentos y salud.",
   food_snap:"Solicitar SNAP y Medicaid (kynect.ky.gov)", food_header:"Comedores y despensas",
   food_note:"Llama antes \u2014 los horarios pueden cambiar.",
+  lit_title:"Literatura", lit_sub:"Libros de recuperaci\u00f3n gratuitos \u2014 l\u00e9elos en l\u00ednea.",
+  lit_aa_title:"Alcoh\u00f3licos An\u00f3nimos \u2014 Libro Grande", lit_aa_desc:"El texto fundamental de A.A. Lee el libro completo gratis en el sitio oficial de A.A.",
+  lit_na_title:"Narc\u00f3ticos An\u00f3nimos \u2014 Texto B\u00e1sico", lit_na_desc:"El texto fundamental de N.A. Encuentra literatura oficial gratuita de N.A. en na.org.",
+  lit_read:"Leer ahora",
+  lit_note:"Los libros se abren desde sus sitios oficiales gratuitos.",
   services:["Apoyo de pares","Reuniones de recuperación","Wi-Fi, computadoras y teléfonos","Bocadillos, café y agua"],
   podcast_title:"Pódcast Crosstalk Recovery", podcast_desc:"Personas reales, historias reales, recuperación real.",
   visit_title:"Visita el centro", visit_addr:"415 Broadway, Paducah, KY 42001",
@@ -936,7 +946,7 @@ function renderResources(){
     <section class="card" aria-label="${esc(t().community_title)}">
       <h2>${esc(t().community_title)}</h2>
       <div class="entry">
-        <div class="m-name">\U0001f9e0 ${esc(t().smart_title)}</div>
+        <div class="m-name">🧠 ${esc(t().smart_title)}</div>
         <div class="m-desc">${esc(t().smart_desc)}</div>
         <p class="mt"><strong>${esc(t().smart_points_title)}</strong></p>
         <ol class="clean">${t().smart_points.map(p=>`<li>${esc(p)}</li>`).join("")}</ol>
@@ -944,7 +954,7 @@ function renderResources(){
         <div class="row"><a class="btn btn-outline btn-sm" href="https://www.smartrecovery.org" target="_blank" rel="noopener">${esc(t().smart_site)} \u2197</a></div>
       </div>
       <div class="entry">
-        <div class="m-name">\U0001f4bc ${esc(t().emp_title)}</div>
+        <div class="m-name">💼 ${esc(t().emp_title)}</div>
         <div class="m-desc">${esc(t().emp_desc)}</div>
         <div class="row mt"><a class="btn btn-primary btn-sm" href="https://kcc.ky.gov" target="_blank" rel="noopener">${esc(t().emp_unemp)} \u2197</a></div>
         <p class="mt"><strong>${esc(t().emp_header)}</strong></p>
@@ -952,13 +962,28 @@ function renderResources(){
         <p class="muted small">${esc(t().emp_note)}</p>
       </div>
       <div class="entry">
-        <div class="m-name">\U0001f37d\ufe0f ${esc(t().food_title)}</div>
+        <div class="m-name">🍽️ ${esc(t().food_title)}</div>
         <div class="m-desc">${esc(t().food_desc)}</div>
         <div class="row mt"><a class="btn btn-primary btn-sm" href="https://kynect.ky.gov" target="_blank" rel="noopener">${esc(t().food_snap)} \u2197</a></div>
         <p class="mt"><strong>${esc(t().food_header)}</strong></p>
         ${KITCHENS.map(k=>`<div class="mt"><strong>${esc(k.n)}</strong><br><span style="color:var(--teal);font-weight:600">${esc(k.a)}</span><br><span class="muted">${esc(lang==="es"?k.es:k.en)}</span></div>`).join("")}
         <p class="muted small">${esc(t().food_note)}</p>
       </div>
+    </section>
+    <section class="card" aria-label="${esc(t().lit_title)}">
+      <h2>${esc(t().lit_title)}</h2>
+      <p class="muted">${esc(t().lit_sub)}</p>
+      <div class="entry">
+        <div class="m-name">📖 ${esc(t().lit_aa_title)}</div>
+        <div class="m-desc">${esc(t().lit_aa_desc)}</div>
+        <div class="row mt"><a class="btn btn-primary btn-sm" href="https://www.aa.org/the-big-book" target="_blank" rel="noopener">${esc(t().lit_read)} \u2197</a></div>
+      </div>
+      <div class="entry">
+        <div class="m-name">📖 ${esc(t().lit_na_title)}</div>
+        <div class="m-desc">${esc(t().lit_na_desc)}</div>
+        <div class="row mt"><a class="btn btn-primary btn-sm" href="https://www.na.org/" target="_blank" rel="noopener">${esc(t().lit_read)} \u2197</a></div>
+      </div>
+      <p class="muted small">${esc(t().lit_note)}</p>
     </section>
     <section class="card" aria-label="${esc(t().services_title)}">
       <h2>${esc(t().services_title)}</h2>
