@@ -3,6 +3,12 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <!-- Package-visibility declaration (Android 11+): lets the Distract tab
+         detect and launch John's installed Flappy Bird build. -->
+    <queries>
+        <package android:name="com.dotgears.flappybird.jyeley.v100426" />
+    </queries>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
