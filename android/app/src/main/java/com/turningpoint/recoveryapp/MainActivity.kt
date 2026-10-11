@@ -88,6 +88,7 @@ class MainActivity : ComponentActivity() {
                 var lang by remember { mutableStateOf(store.language) }
                 var tab by remember { mutableStateOf(Tab.Today) }
                 var crisisOpen by remember { mutableStateOf(false) }
+                var reader by remember { mutableStateOf<Pair<String, String>?>(null) }
                 val s = if (lang == "es") es else en
                 var crashReport by remember {
                     mutableStateOf(
@@ -97,6 +98,12 @@ class MainActivity : ComponentActivity() {
 
                 fun goTo(t: Tab) { tab = t }
 
+                val openReader: (String, String) -> Unit = { url, title -> reader = url to title }
+
+                if (reader != null) {
+                    LiteratureReaderScreen(url = reader!!.first, title = reader!!.second,
+                        s = s, onClose = { reader = null })
+                } else
                 Scaffold(
                     topBar = { AppTopBar(s, lang, onLang = {
                         lang = it; store.language = it
@@ -114,7 +121,7 @@ class MainActivity : ComponentActivity() {
                             Tab.CheckIn -> CheckInScreen(store, s, lang, ::goTo) { crisisOpen = true }
                             Tab.Counter -> CounterScreen(store, s, lang, ::goTo)
                             Tab.Meetings -> MeetingsScreen(store, s, lang, ::goTo)
-                            Tab.Resources -> ResourcesScreen(store, s, lang, ::goTo)
+                            Tab.Resources -> ResourcesScreen(store, s, lang, ::goTo, openReader)
                             Tab.Events -> EventsScreen(store, s, ::goTo)
                             Tab.Steps -> StepsScreen(store, s, lang, ::goTo)
                             Tab.Sponsors -> SponsorsScreen(store, s, lang, ::goTo)

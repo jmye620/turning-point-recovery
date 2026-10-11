@@ -44,7 +44,8 @@ import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.delay
 
 @Composable
-fun ResourcesScreen(store: Store, s: AppStrings, lang: String, goTo: (Tab) -> Unit) {
+fun ResourcesScreen(store: Store, s: AppStrings, lang: String, goTo: (Tab) -> Unit,
+                    onOpenReader: (String, String) -> Unit) {
     Column(Modifier.fillMaxWidth()) {
         SectionTitle(s.copingTools)
 
@@ -144,6 +145,22 @@ fun ResourcesScreen(store: Store, s: AppStrings, lang: String, goTo: (Tab) -> Un
             Text(s.kitchensNote, style = MaterialTheme.typography.bodyMedium, color = WarmGray,
                 fontWeight = FontWeight.SemiBold)
         }
+
+        Spacer(Modifier.height(18.dp))
+        SectionTitle(s.literatureTitle)
+        Text(s.literatureSubtitle, style = MaterialTheme.typography.bodyLarge, color = WarmGray)
+        Spacer(Modifier.height(10.dp))
+        ToolCard("📖", s.aaBookTitle, s.aaBookBody) {
+            Spacer(Modifier.height(8.dp))
+            PillButton(s.readNow, modifier = Modifier.fillMaxWidth(),
+                onClick = { onOpenReader(AA_BIG_BOOK_URL, s.aaBookTitle) })
+        }
+        ToolCard("📖", s.naBookTitle, s.naBookBody) {
+            Spacer(Modifier.height(8.dp))
+            PillButton(s.readNow, modifier = Modifier.fillMaxWidth(),
+                onClick = { onOpenReader(NA_LITERATURE_URL, s.naBookTitle) })
+        }
+        Text(s.literatureNote, style = MaterialTheme.typography.bodyMedium, color = WarmGray)
 
         Spacer(Modifier.height(18.dp))
         SectionTitle(s.freeServices)

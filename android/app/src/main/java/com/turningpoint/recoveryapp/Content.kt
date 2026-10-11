@@ -135,6 +135,10 @@ const val UNEMPLOYMENT_URL = "https://kcc.ky.gov"
 const val KYNECT_URL = "https://kynect.ky.gov"
 const val SMART_URL = "https://www.smartrecovery.org"
 
+/** Free recovery literature (official sites, verified Oct 2026). */
+const val AA_BIG_BOOK_URL = "https://www.aa.org/the-big-book"
+const val NA_LITERATURE_URL = "https://www.na.org/"
+
 /** Western Kentucky employers known for second-chance hiring. */
 data class Employer(val name: String, val location: String, val noteEn: String, val noteEs: String)
 

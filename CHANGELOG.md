@@ -2,6 +2,10 @@
 
 Package: `com.turningpoint.recoveryapp` · Min SDK 26 (Android 8.0) · armv8 32/64-bit
 
+## 1.2.0 — 2026-10-11 (versionCode 12)
+- New **Literature** section on the Resources tab: read the **Alcoholics Anonymous Big Book** free on the official aa.org site and find free **Narcotics Anonymous** literature on na.org, in a built-in in-app reader (back button pages through the book; "open in browser" option included)
+- All new content available in English and Spanish
+
 ## 1.1.9 — 2026-10-10 (versionCode 11)
 - App launcher icon reverted to the previous sunrise vector icon (teal background)
 

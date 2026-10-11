@@ -105,8 +105,8 @@ cmd = [AAPT2, "link", "-o", link_out,
        "--output-text-symbols", f"{WORK}/symbols.txt",
        "--min-sdk-version", "26",
        "--target-sdk-version", TARGET_SDK,
-       "--version-code", "11",
-       "--version-name", "1.1.9"]
+       "--version-code", "12",
+       "--version-name", "1.2.0"]
 if BUNDLE_PROTO:
     cmd.append("--proto-format")
 for a in assets:
