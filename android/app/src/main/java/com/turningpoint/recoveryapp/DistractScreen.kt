@@ -1,7 +1,9 @@
 package com.turningpoint.recoveryapp
 
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -27,6 +29,10 @@ import androidx.compose.ui.unit.sp
 
 /** Package of John's installed Flappy Bird v1 mod build. */
 const val FLAPPY_PACKAGE = "com.dotgears.flappybird.jyeley.v100426"
+
+/** Download link for the Flappy Bird mod APK, used when it isn't installed. */
+const val FLAPPY_DOWNLOAD_URL =
+    "https://drive.google.com/file/d/1-olzPLdgR0lPhvSM7gSJCCDdS1dLSImu/view?usp=drivesdk"
 
 fun isFlappyInstalled(ctx: Context): Boolean = try {
     @Suppress("DEPRECATION")
@@ -73,14 +79,20 @@ fun DistractScreen(store: Store, s: AppStrings, lang: String, goTo: (Tab) -> Uni
                     if (launch != null) ctx.startActivity(launch)
                     else installed = false
                 } else {
-                    installed = isFlappyInstalled(ctx)
+                    ctx.startActivity(
+                        Intent(Intent.ACTION_VIEW, Uri.parse(FLAPPY_DOWNLOAD_URL))
+                    )
                 }
             },
             shape = RoundedCornerShape(50),
             colors = ButtonDefaults.buttonColors(containerColor = DeepTeal),
             modifier = Modifier.fillMaxWidth().height(60.dp),
         ) {
-            Text(s.playFlappy, fontWeight = FontWeight.Bold, fontSize = 18.sp)
+            Text(
+                if (installed) s.playFlappy else s.downloadFlappy,
+                fontWeight = FontWeight.Bold,
+                fontSize = 18.sp,
+            )
         }
         if (!installed) {
             Spacer(Modifier.height(14.dp))
