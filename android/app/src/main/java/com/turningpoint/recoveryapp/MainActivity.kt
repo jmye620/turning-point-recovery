@@ -29,6 +29,7 @@ import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.MenuBook
 import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.People
+import androidx.compose.material.icons.filled.SportsEsports
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -56,7 +57,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
-enum class Tab { Today, CheckIn, Counter, Meetings, Resources, Events, Steps, Sponsors }
+enum class Tab { Today, CheckIn, Counter, Meetings, Resources, Events, Steps, Sponsors, Distract }
 
 /** Saves uncaught exceptions to internal storage so the next launch can
  *  offer to share the crash details for diagnosis. */
@@ -125,6 +126,7 @@ class MainActivity : ComponentActivity() {
                             Tab.Events -> EventsScreen(store, s, ::goTo)
                             Tab.Steps -> StepsScreen(store, s, lang, ::goTo)
                             Tab.Sponsors -> SponsorsScreen(store, s, lang, ::goTo)
+                            Tab.Distract -> DistractScreen(store, s, lang, ::goTo)
                         }
                     }
                 }
@@ -222,6 +224,7 @@ private fun AppBottomBar(s: AppStrings, tab: Tab, onTab: (Tab) -> Unit) {
         Triple(Tab.Events, s.tabEvents, Icons.Filled.Campaign),
         Triple(Tab.Steps, s.tabSteps, Icons.Filled.CheckCircle),
         Triple(Tab.Sponsors, s.tabSponsors, Icons.Filled.People),
+        Triple(Tab.Distract, s.tabDistract, Icons.Filled.SportsEsports),
     )
     NavigationBar(containerColor = CardWhite) {
         items.forEach { (t, label, icon) ->
