@@ -25,8 +25,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
-/** Package of John's Flappy Bird v1 mod build (v1-only signed, jyeley differentiator). */
-const val FLAPPY_PACKAGE = "com.dotgears.flappybird.jyeley.v100426"
+/** Package of John's installed Flappy Bird mod build. */
+const val FLAPPY_PACKAGE = "com.dotgears.flappybird.jyeley.100426"
 
 fun isFlappyInstalled(ctx: Context): Boolean = try {
     @Suppress("DEPRECATION")
