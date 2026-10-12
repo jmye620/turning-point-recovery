@@ -49,6 +49,8 @@ header.top{
 .btn-ghost{background:transparent;color:var(--teal);padding:10px 12px}
 .btn-sm{min-height:40px;padding:8px 14px;font-size:14px}
 .btn-block{width:100%}
+.flappy-wrap{max-width:400px;margin:12px auto 0}
+#flappy{width:100%;height:auto;display:block;border-radius:14px;touch-action:none;box-shadow:0 4px 18px rgba(14,91,87,.25);cursor:pointer}
 .btn[disabled]{opacity:.55;cursor:not-allowed}
 a.btn{color:inherit}
 .btn-primary,a.btn-primary{color:#fff}
@@ -248,7 +250,9 @@ ul.clean li{margin:6px 0}
 const STR = {
 en: {
   brand_sub:"A Recovery Community Center", help_btn:"Get help", lang_name:"Español",
-  tabs:{today:"Today",checkin:"Check-in",counter:"Counter",meetings:"Meetings",resources:"Resources",events:"Events",steps:"Steps",sponsors:"Sponsors"},
+  tabs:{today:"Today",checkin:"Check-in",counter:"Counter",meetings:"Meetings",resources:"Resources",events:"Events",steps:"Steps",sponsors:"Sponsors",distract:"Distract"},
+  distractTitle:"Need a distraction?", distractBody:"Cravings come in waves, and they pass. Play a quick game — give your mind something else to do for a few minutes.", distractTip:"Tip: play for about 5 minutes, then check in with yourself.",
+  flappyTapStart:"Tap to start", flappyTapFlap:"Tap, click, or press Space to flap", flappyOver:"Game over", flappyScore:"Score", flappyBest:"Best", flappyNewBest:"New best!", flappyAgain:"Tap to play again",
   affirmation_label:"Today's affirmation",
   affirmations:["I am stronger than my cravings.","One day at a time — today is enough.","I deserve a life in recovery.","Small steps forward are still forward.","I can ask for help — that is strength."],
   todays_meetings:"Today's meetings", no_meetings_today:"No meetings scheduled today.",
@@ -358,7 +362,9 @@ en: {
 },
 es: {
   brand_sub:"Un Centro Comunitario de Recuperación", help_btn:"Ayuda", lang_name:"English",
-  tabs:{today:"Hoy",checkin:"Registro",counter:"Contador",meetings:"Reuniones",resources:"Recursos",events:"Eventos",steps:"Pasos",sponsors:"Padrinos"},
+  tabs:{today:"Hoy",checkin:"Registro",counter:"Contador",meetings:"Reuniones",resources:"Recursos",events:"Eventos",steps:"Pasos",sponsors:"Padrinos",distract:"Distracción"},
+  distractTitle:"¿Necesitas distraerte?", distractBody:"Los antojos vienen en oleadas y pasan. Juega un rato — dale a tu mente otra cosa que hacer por unos minutos.", distractTip:"Consejo: juega unos 5 minutos, luego pregúntate cómo estás.",
+  flappyTapStart:"Toca para empezar", flappyTapFlap:"Toca, haz clic o pulsa Espacio para aletear", flappyOver:"Fin del juego", flappyScore:"Puntos", flappyBest:"Récord", flappyNewBest:"¡Nuevo récord!", flappyAgain:"Toca para jugar de nuevo",
   affirmation_label:"Afirmación de hoy",
   affirmations:["Soy más fuerte que mis ansias.","Un día a la vez — hoy es suficiente.","Merezco una vida en recuperación.","Los pasos pequeños también son avance.","Puedo pedir ayuda — eso es fortaleza."],
   todays_meetings:"Reuniones de hoy", no_meetings_today:"No hay reuniones programadas hoy.",
@@ -568,7 +574,7 @@ function cleanDays(){
 }
 
 /* ================= navigation ================= */
-const TABS = ["today","checkin","counter","meetings","resources","events","steps","sponsors"];
+const TABS = ["today","checkin","counter","meetings","resources","events","steps","sponsors","distract"];
 const EMPLOYERS=[
  {n:"Pella Corporation",l:"Murray, KY",en:"Manufacturing: operators, maintenance technicians",es:"Manufactura: operadores, t\u00e9cnicos de mantenimiento"},
  {n:"People Plus, Inc.",l:"Paducah \u00b7 Madisonville \u00b7 Henderson \u00b7 Greenville",en:"Staffing: general labor, warehouse, CDL drivers",es:"Agencia de empleo: trabajo general, almac\u00e9n, conductores CDL"},
@@ -596,7 +602,9 @@ function render(){
   $("#lang-btn").textContent = lang==="en"?"ES":"EN";
   $("#lang-btn").setAttribute("aria-label", lang==="en" ? "Cambiar a español" : "Switch to English");
   renderTabs();
-  ({today:renderToday,checkin:renderCheckin,counter:renderCounter,meetings:renderMeetings,resources:renderResources,events:renderEvents,steps:renderSteps,sponsors:renderSponsors})[tab]();
+  if(flappyRAF){ cancelAnimationFrame(flappyRAF); flappyRAF = 0; }
+  if(flappyKeyHandler){ document.removeEventListener("keydown", flappyKeyHandler); flappyKeyHandler = null; }
+  ({today:renderToday,checkin:renderCheckin,counter:renderCounter,meetings:renderMeetings,resources:renderResources,events:renderEvents,steps:renderSteps,sponsors:renderSponsors,distract:renderDistract})[tab]();
   renderFooter();
   window.scrollTo({top:0});
 }
@@ -1288,6 +1296,199 @@ function renderSponsors(){
     $("#sp-name").value=""; $("#sp-phone").value="";
     refresh(); toast(t().saved);
   });
+}
+
+/* ================= DISTRACT — Flappy Bird ================= */
+let flappyRAF = 0, flappyKeyHandler = null;
+function renderDistract(){
+  $("#view").innerHTML = `
+    <section class="card" aria-label="${esc(t().distractTitle)}">
+      <h2>🎮 ${esc(t().distractTitle)}</h2>
+      <p class="muted">${esc(t().distractBody)}</p>
+      <div class="flappy-wrap"><canvas id="flappy" width="400" height="600" aria-label="${esc(t().distractTitle)}"></canvas></div>
+      <p class="muted small" style="text-align:center;margin:10px 0 0">⏱️ ${esc(t().distractTip)}</p>
+    </section>`;
+  startFlappy();
+}
+function startFlappy(){
+  const cv = $("#flappy"); if(!cv || !cv.getContext) return;
+  const ctx = cv.getContext("2d");
+  const W = 400, H = 600, GH = 96;
+  const GRAV = 0.45, FLAPV = -7.6, MAXFALL = 11;
+  const SPEED = 2.3, GAP = 152, PW = 66, SPACING = 225;
+  const BX = 108, BR = 15;
+  let birdY, birdV, pipes, score, state, groundX, wingT, overAt, clouds;
+  let best = +(store.get("flappy_best", 0) || 0);
+  function reset(){
+    birdY = H * 0.42; birdV = 0; pipes = []; score = 0;
+    state = "ready"; groundX = 0; wingT = 0;
+    clouds = [{x:60,y:90,s:1},{x:250,y:150,s:1.4},{x:340,y:60,s:0.8}];
+  }
+  function addPipe(x){
+    const margin = 70;
+    const topH = margin + Math.random() * (H - GH - GAP - margin * 2);
+    pipes.push({x:x, top:topH, scored:false});
+  }
+  function flap(){
+    const now = performance.now();
+    if(state === "ready"){ state = "play"; }
+    if(state === "play"){ birdV = FLAPV; wingT = 0; }
+    else if(state === "over" && now - overAt > 700){ reset(); state = "play"; birdV = FLAPV; }
+  }
+  function die(){
+    state = "over"; overAt = performance.now();
+    if(score > best){ best = score; store.set("flappy_best", best); }
+  }
+  function circleHitsRect(cx, cy, r, rx, ry, rw, rh){
+    const nx = Math.max(rx, Math.min(cx, rx + rw));
+    const ny = Math.max(ry, Math.min(cy, ry + rh));
+    const dx = cx - nx, dy = cy - ny;
+    return dx * dx + dy * dy < r * r;
+  }
+  function drawBird(){
+    const rot = Math.max(-0.45, Math.min(1.25, birdV * 0.09));
+    ctx.save();
+    ctx.translate(BX, birdY);
+    ctx.rotate(rot);
+    // body
+    ctx.fillStyle = "#ffd94d";
+    ctx.beginPath(); ctx.arc(0, 0, BR, 0, Math.PI * 2); ctx.fill();
+    ctx.strokeStyle = "#d9a821"; ctx.lineWidth = 2; ctx.stroke();
+    // belly
+    ctx.fillStyle = "#fff3c4";
+    ctx.beginPath(); ctx.arc(-2, 6, BR * 0.55, 0, Math.PI * 2); ctx.fill();
+    // wing (flaps)
+    wingT += 0.35;
+    const wa = Math.sin(wingT) * 0.7;
+    ctx.save();
+    ctx.translate(-4, 0); ctx.rotate(wa * 0.6 - 0.3);
+    ctx.fillStyle = "#f5b942";
+    ctx.beginPath(); ctx.ellipse(-6, 2, 11, 6.5, -0.4, 0, Math.PI * 2); ctx.fill();
+    ctx.restore();
+    // eye
+    ctx.fillStyle = "#fff";
+    ctx.beginPath(); ctx.arc(6, -6, 5.5, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = "#222";
+    ctx.beginPath(); ctx.arc(7.5, -6, 2.6, 0, Math.PI * 2); ctx.fill();
+    // beak
+    ctx.fillStyle = "#ff8c42";
+    ctx.beginPath();
+    ctx.moveTo(BR - 3, -1); ctx.lineTo(BR + 9, 2); ctx.lineTo(BR - 3, 5);
+    ctx.closePath(); ctx.fill();
+    ctx.restore();
+  }
+  function drawPipe(x, y, h, isTop){
+    const capH = 26;
+    const grad = ctx.createLinearGradient(x, 0, x + PW, 0);
+    grad.addColorStop(0, "#5da93f"); grad.addColorStop(0.5, "#8fd14f"); grad.addColorStop(1, "#4e8f33");
+    ctx.fillStyle = grad;
+    ctx.fillRect(x, y, PW, h);
+    ctx.strokeStyle = "#2f6b1e"; ctx.lineWidth = 2;
+    ctx.strokeRect(x + 1, y, PW - 2, h);
+    const cy = isTop ? y + h - capH : y;
+    ctx.fillStyle = grad; ctx.fillRect(x - 4, cy, PW + 8, capH);
+    ctx.strokeRect(x - 3, cy, PW + 6, capH);
+  }
+  function draw(){
+    // sky
+    const sky = ctx.createLinearGradient(0, 0, 0, H);
+    sky.addColorStop(0, "#6fc7d6"); sky.addColorStop(1, "#d8f3ee");
+    ctx.fillStyle = sky; ctx.fillRect(0, 0, W, H);
+    // clouds
+    ctx.fillStyle = "rgba(255,255,255,.85)";
+    clouds.forEach(c=>{
+      ctx.beginPath();
+      ctx.ellipse(c.x, c.y, 34 * c.s, 16 * c.s, 0, 0, Math.PI * 2);
+      ctx.ellipse(c.x + 24 * c.s, c.y + 4, 24 * c.s, 12 * c.s, 0, 0, Math.PI * 2);
+      ctx.fill();
+    });
+    // pipes
+    pipes.forEach(p=>{
+      drawPipe(p.x, 0, p.top, true);
+      drawPipe(p.x, p.top + GAP, H - GH - p.top - GAP, false);
+    });
+    // ground
+    ctx.fillStyle = "#e8d8a8"; ctx.fillRect(0, H - GH, W, GH);
+    ctx.fillStyle = "#c9b478";
+    for(let gx = -((groundX * 2) % 48); gx < W; gx += 48) ctx.fillRect(gx, H - GH + 34, 24, GH);
+    ctx.fillStyle = "#7cbf5a"; ctx.fillRect(0, H - GH, W, 14);
+    ctx.fillStyle = "#5da93f"; ctx.fillRect(0, H - GH + 14, W, 5);
+    drawBird();
+    // score
+    if(state === "play" || state === "over"){
+      ctx.font = "bold 44px system-ui,sans-serif";
+      ctx.textAlign = "center";
+      ctx.lineWidth = 5; ctx.strokeStyle = "rgba(0,0,0,.35)";
+      ctx.strokeText(score, W / 2, 70);
+      ctx.fillStyle = "#fff"; ctx.fillText(score, W / 2, 70);
+    }
+    if(state === "ready"){
+      ctx.textAlign = "center";
+      ctx.font = "bold 30px system-ui,sans-serif";
+      ctx.lineWidth = 5; ctx.strokeStyle = "rgba(0,0,0,.35)";
+      ctx.strokeText(t().flappyTapStart, W / 2, H * 0.32);
+      ctx.fillStyle = "#fff"; ctx.fillText(t().flappyTapStart, W / 2, H * 0.32);
+      ctx.font = "15px system-ui,sans-serif";
+      ctx.fillStyle = "rgba(255,255,255,.95)";
+      ctx.fillText(t().flappyTapFlap, W / 2, H * 0.32 + 30);
+    }
+    if(state === "over"){
+      ctx.fillStyle = "rgba(0,0,0,.45)"; ctx.fillRect(0, 0, W, H);
+      const pw = 300, ph = 240, px = (W - pw) / 2, py = (H - ph) / 2;
+      ctx.fillStyle = "#fffdf6";
+      ctx.strokeStyle = "#0e5b57"; ctx.lineWidth = 4;
+      ctx.beginPath();
+      if(ctx.roundRect) ctx.roundRect(px, py, pw, ph, 18); else ctx.rect(px, py, pw, ph);
+      ctx.fill(); ctx.stroke();
+      ctx.textAlign = "center";
+      ctx.fillStyle = "#0e5b57";
+      ctx.font = "bold 28px system-ui,sans-serif";
+      ctx.fillText(t().flappyOver, W / 2, py + 52);
+      ctx.font = "17px system-ui,sans-serif"; ctx.fillStyle = "#555";
+      ctx.fillText(t().flappyScore + ": " + score, W / 2, py + 92);
+      ctx.fillText(t().flappyBest + ": " + best, W / 2, py + 120);
+      if(score > 0 && score >= best){
+        ctx.fillStyle = "#d9a821"; ctx.font = "bold 18px system-ui,sans-serif";
+        ctx.fillText("★ " + t().flappyNewBest, W / 2, py + 152);
+      }
+      ctx.fillStyle = "#0e5b57"; ctx.font = "bold 17px system-ui,sans-serif";
+      ctx.fillText("↻ " + t().flappyAgain, W / 2, py + 196);
+    }
+  }
+  function step(){
+    if(state === "play"){
+      birdV = Math.min(MAXFALL, birdV + GRAV);
+      birdY += birdV;
+      if(pipes.length === 0 || pipes[pipes.length - 1].x < W - SPACING) addPipe(W + 40);
+      pipes.forEach(p=>{ p.x -= SPEED; });
+      if(pipes[0] && pipes[0].x < -PW - 10) pipes.shift();
+      pipes.forEach(p=>{
+        if(!p.scored && p.x + PW < BX - BR){ p.scored = true; score++; }
+      });
+      groundX += SPEED;
+      clouds.forEach(c=>{ c.x -= 0.4; if(c.x < -60) c.x = W + 60; });
+      // collisions
+      const hitPipe = pipes.some(p =>
+        circleHitsRect(BX, birdY, BR - 2, p.x, 0, PW, p.top) ||
+        circleHitsRect(BX, birdY, BR - 2, p.x, p.top + GAP, PW, H)
+      );
+      if(hitPipe || birdY + BR >= H - GH || birdY - BR <= 0) die();
+    } else if(state === "ready"){
+      groundX += SPEED * 0.4;
+      clouds.forEach(c=>{ c.x -= 0.2; if(c.x < -60) c.x = W + 60; });
+      birdY = H * 0.42 + Math.sin(performance.now() / 350) * 8;
+    }
+    draw();
+    flappyRAF = requestAnimationFrame(step);
+  }
+  reset();
+  cv.addEventListener("pointerdown", e=>{ e.preventDefault(); flap(); });
+  flappyKeyHandler = e=>{
+    if(tab !== "distract") return;
+    if(e.code === "Space" || e.code === "ArrowUp"){ e.preventDefault(); flap(); }
+  };
+  document.addEventListener("keydown", flappyKeyHandler);
+  step();
 }
 
 /* ================= init ================= */
