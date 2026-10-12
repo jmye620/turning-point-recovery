@@ -1,7 +1,7 @@
 import SwiftUI
 
 enum AppTab: Hashable {
-    case today, checkIn, counter, meetings, resources, events, steps, sponsors
+    case today, checkIn, counter, meetings, resources, events, steps, sponsors, distract
 }
 
 struct ContentView: View {
@@ -33,6 +33,8 @@ struct ContentView: View {
                         StepsView(store: store, s: s, lang: lang, goTo: { tab = $0 })
                     case .sponsors:
                         SponsorsView(store: store, s: s, lang: lang, goTo: { tab = $0 })
+                    case .distract:
+                        DistractView(store: store, s: s, lang: lang, goTo: { tab = $0 })
                     }
                 }
                 .padding(.horizontal, 16)
@@ -89,6 +91,7 @@ struct ContentView: View {
             (.events, s.tabEvents, "megaphone.fill"),
             (.steps, s.tabSteps, "checkmark.circle.fill"),
             (.sponsors, s.tabSponsors, "person.2.fill"),
+            (.distract, s.tabDistract, "gamecontroller.fill"),
         ]
         HStack(spacing: 0) {
             ForEach(items, id: \.0) { t, label, icon in

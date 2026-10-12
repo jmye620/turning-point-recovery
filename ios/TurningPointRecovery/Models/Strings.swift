@@ -7,7 +7,8 @@ struct AppStrings {
     // Tabs
     let tabToday: String, tabCheckIn: String, tabCounter: String
     let tabMeetings: String, tabResources: String, tabEvents: String
-    let tabSteps: String, tabSponsors: String
+    let tabSteps: String, tabSponsors: String, tabDistract: String
+    let distractTitle: String, distractBody: String, distractTip: String
     // Header / global
     let appName: String, getHelp: String, language: String
     let crisisTitle: String, crisisSubtitle: String
@@ -111,7 +112,10 @@ struct AppStrings {
 let en = AppStrings(
     tabToday: "Today", tabCheckIn: "Check-in", tabCounter: "Counter",
     tabMeetings: "Meetings", tabResources: "Resources", tabEvents: "Events",
-    tabSteps: "Steps", tabSponsors: "Sponsors",
+    tabSteps: "Steps", tabSponsors: "Sponsors", tabDistract: "Distract",
+    distractTitle: "Need a distraction?",
+    distractBody: "Cravings come in waves, and they pass. Play a quick game — give your mind something else to do for a few minutes.",
+    distractTip: "Tip: play for about 5 minutes, then check in with yourself.",
     appName: "Turning Point", getHelp: "Get help", language: "ES",
     crisisTitle: "Crisis help", crisisSubtitle: "You don't have to face this moment alone. Reach out — right now.",
     crisisCallNow: "I need support right now", crisisCallLine: "Call the 24-hour line",
@@ -227,7 +231,10 @@ let en = AppStrings(
 let es = AppStrings(
     tabToday: "Hoy", tabCheckIn: "Registro", tabCounter: "Contador",
     tabMeetings: "Reuniones", tabResources: "Recursos", tabEvents: "Eventos",
-    tabSteps: "Pasos", tabSponsors: "Padrinos",
+    tabSteps: "Pasos", tabSponsors: "Padrinos", tabDistract: "Distracción",
+    distractTitle: "¿Necesitas distraerte?",
+    distractBody: "Los antojos vienen en oleadas y pasan. Juega un rato — dale a tu mente otra cosa que hacer por unos minutos.",
+    distractTip: "Consejo: juega unos 5 minutos, luego pregúntate cómo estás.",
     appName: "Turning Point", getHelp: "Ayuda", language: "EN",
     crisisTitle: "Ayuda en crisis", crisisSubtitle: "No tienes que enfrentar este momento a solas. Comunícate — ahora mismo.",
     crisisCallNow: "Necesito apoyo ahora mismo", crisisCallLine: "Llama a la línea 24 horas",
