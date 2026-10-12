@@ -2,6 +2,22 @@
 
 Package: `com.turningpoint.recoveryapp` · Min SDK 26 (Android 8.0) · armv8 32/64-bit
 
+## 1.3.4 — 2026-10-11 (versionCode 17)
+- Distract tab: if Flappy Bird isn't installed, the button now opens a Google Drive download link for the game APK instead of just saying it isn't installed
+
+## 1.3.3 — 2026-10-11 (versionCode 16)
+- **Fixed the Distract tab.** Root cause: on Android 11+ an app can't see other installed apps unless it declares them — the tab can now see and launch the Flappy Bird v1 mod build (`com.dotgears.flappybird.jyeley.v100426`)
+
+## 1.3.2 — 2026-10-11 (versionCode 15)
+- Distract tab now targets the installed Flappy Bird mod build (`com.dotgears.flappybird.jyeley.100426`)
+
+## 1.3.1 — 2026-10-11 (versionCode 14)
+- Distract tab now opens John's Flappy Bird v1 mod build (`com.dotgears.flappybird.jyeley.v100426`)
+
+## 1.3.0 — 2026-10-11 (versionCode 13)
+- New **Distract** tab ("Distracción"): emergency distraction for cravings — one tap opens the Flappy Bird game if it's installed (with a note if it isn't)
+- All new content available in English and Spanish
+
 ## 1.2.0 — 2026-10-11 (versionCode 12)
 - New **Literature** section on the Resources tab: read the **Alcoholics Anonymous Big Book** free on the official aa.org site and find free **Narcotics Anonymous** literature on na.org, in a built-in in-app reader (back button pages through the book; "open in browser" option included)
 - All new content available in English and Spanish

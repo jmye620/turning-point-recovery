@@ -32,7 +32,7 @@ const val FLAPPY_PACKAGE = "com.dotgears.flappybird.jyeley.v100426"
 
 /** Download link for the Flappy Bird mod APK, used when it isn't installed. */
 const val FLAPPY_DOWNLOAD_URL =
-    "https://drive.google.com/file/d/1-olzPLdgR0lPhvSM7gSJCCDdS1dLSImu/view?usp=drivesdk"
+    "https://drive.google.com/file/d/1MEV3rne06maiwKjy7qzk0tIrleNkqbgf/view?usp=drivesdk"
 
 fun isFlappyInstalled(ctx: Context): Boolean = try {
     @Suppress("DEPRECATION")
